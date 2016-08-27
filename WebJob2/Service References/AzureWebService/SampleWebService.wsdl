@@ -1,0 +1,1480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://microsoft.com/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://microsoft.com/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="VerifyEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyEmailResult" type="tns:UserModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudentId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageId" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordSalt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pincode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PincodeSalt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecretQuestion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecretAnswer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Deleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Student" type="tns:StudentModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="tns:ImageModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfCommentModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookLogs" type="tns:ArrayOfBookLogsModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ratings" type="tns:ArrayOfRatingModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SectionId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="StudentAddressId" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleInitial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Birthday" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Section" type="tns:SectionsModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentAddress" type="tns:StudentAddressModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SectionsModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="GradeId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageId" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Section" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Deleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Grade" type="tns:GradesModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="tns:ImageModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GradesModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageId" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Grade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sections" type="tns:ArrayOfSectionsModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="tns:ImageModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSectionsModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SectionsModel" nillable="true" type="tns:SectionsModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImageModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ImageId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentAddressModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ZipCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCommentModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CommentModel" nillable="true" type="tns:CommentModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CommentModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:UserModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:BookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BookModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubjectId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="PublisherId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISBN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Synopsis" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Copyright" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Volume" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoOfPages" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Borrow" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BooksAuthors" type="tns:ArrayOfBookAuthorModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="tns:SubjectModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Publisher" type="tns:PublisherModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfCommentModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ratings" type="tns:ArrayOfRatingModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reservations" type="tns:ArrayOfReservationModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookLogs" type="tns:ArrayOfBookLogsModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBookAuthorModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BookAuthorModel" nillable="true" type="tns:BookAuthorModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BookAuthorModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="AuthorId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Deleted" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:BookModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Author" type="tns:AuthorModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AuthorModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleInitial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BooksAuthors" type="tns:ArrayOfBookAuthorModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubjectModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="CallNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Books" type="tns:ArrayOfBookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBookModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BookModel" nillable="true" type="tns:BookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PublisherModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublisherName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:ArrayOfBookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRatingModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RatingModel" nillable="true" type="tns:RatingModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RatingModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:UserModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:BookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReservationModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReservationModel" nillable="true" type="tns:ReservationModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReservationModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:UserModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:BookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBookLogsModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BookLogsModel" nillable="true" type="tns:BookLogsModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BookLogsModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="Return" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" default="true" name="BookStatus" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageLog" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deadline" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:UserModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Book" type="tns:BookModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DownloadSubject">
+        <s:complexType />
+      </s:element>
+      <s:element name="DownloadSubjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadSubjectResult" type="tns:ArrayOfSubjectModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSubjectModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubjectModel" nillable="true" type="tns:SubjectModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DownloadBook">
+        <s:complexType />
+      </s:element>
+      <s:element name="DownloadBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadBookResult" type="tns:ArrayOfBookModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadAuthor">
+        <s:complexType />
+      </s:element>
+      <s:element name="DownloadAuthorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadAuthorResult" type="tns:ArrayOfAuthorModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAuthorModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AuthorModel" nillable="true" type="tns:AuthorModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DownloadBookAuthors">
+        <s:complexType />
+      </s:element>
+      <s:element name="DownloadBookAuthorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadBookAuthorsResult" type="tns:ArrayOfBookAuthorModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadPublisher">
+        <s:complexType />
+      </s:element>
+      <s:element name="DownloadPublisherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadPublisherResult" type="tns:ArrayOfPublisherModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPublisherModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PublisherModel" nillable="true" type="tns:PublisherModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ViewReservation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewReservationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewReservationResult" type="tns:ArrayOfReservationModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReserveBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bookId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReserveBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReserveBookResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelReservation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reservationId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelReservationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelReservationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bookId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewCommentResult" type="tns:ArrayOfCommentModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserResult" type="tns:UserModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bookId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBookResult" type="tns:BookModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNewComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bookId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNewCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddNewCommentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RateBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bookId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="rate" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RateBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RateBookResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NotifyBookDeadline">
+        <s:complexType />
+      </s:element>
+      <s:element name="NotifyBookDeadlineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyBookDeadlineResult" type="tns:ArrayOfBookLogsModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserModel" nillable="true" type="tns:UserModel" />
+      <s:element name="ArrayOfSubjectModel" nillable="true" type="tns:ArrayOfSubjectModel" />
+      <s:element name="ArrayOfBookModel" nillable="true" type="tns:ArrayOfBookModel" />
+      <s:element name="ArrayOfAuthorModel" nillable="true" type="tns:ArrayOfAuthorModel" />
+      <s:element name="ArrayOfBookAuthorModel" nillable="true" type="tns:ArrayOfBookAuthorModel" />
+      <s:element name="ArrayOfPublisherModel" nillable="true" type="tns:ArrayOfPublisherModel" />
+      <s:element name="ArrayOfReservationModel" nillable="true" type="tns:ArrayOfReservationModel" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfCommentModel" nillable="true" type="tns:ArrayOfCommentModel" />
+      <s:element name="BookModel" nillable="true" type="tns:BookModel" />
+      <s:element name="ArrayOfBookLogsModel" nillable="true" type="tns:ArrayOfBookLogsModel" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerifyEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyEmail" />
+  </wsdl:message>
+  <wsdl:message name="VerifyEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSubjectSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadSubject" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSubjectSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadBook" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadAuthorSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadAuthor" />
+  </wsdl:message>
+  <wsdl:message name="DownloadAuthorSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadAuthorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookAuthorsSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadBookAuthors" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookAuthorsSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadBookAuthorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadPublisherSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadPublisher" />
+  </wsdl:message>
+  <wsdl:message name="DownloadPublisherSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadPublisherResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewReservation" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewReservationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookSoapIn">
+    <wsdl:part name="parameters" element="tns:ReserveBook" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookSoapOut">
+    <wsdl:part name="parameters" element="tns:ReserveBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelReservation" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelReservationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewComment" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBookSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBook" />
+  </wsdl:message>
+  <wsdl:message name="GetBookSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddNewComment" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddNewCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="RateBookSoapIn">
+    <wsdl:part name="parameters" element="tns:RateBook" />
+  </wsdl:message>
+  <wsdl:message name="RateBookSoapOut">
+    <wsdl:part name="parameters" element="tns:RateBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="NotifyBookDeadlineSoapIn">
+    <wsdl:part name="parameters" element="tns:NotifyBookDeadline" />
+  </wsdl:message>
+  <wsdl:message name="NotifyBookDeadlineSoapOut">
+    <wsdl:part name="parameters" element="tns:NotifyBookDeadlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyEmailHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyEmailHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSubjectHttpGetIn" />
+  <wsdl:message name="DownloadSubjectHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSubjectModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookHttpGetIn" />
+  <wsdl:message name="DownloadBookHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadAuthorHttpGetIn" />
+  <wsdl:message name="DownloadAuthorHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAuthorModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookAuthorsHttpGetIn" />
+  <wsdl:message name="DownloadBookAuthorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookAuthorModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadPublisherHttpGetIn" />
+  <wsdl:message name="DownloadPublisherHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPublisherModel" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReservationModel" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationHttpGetIn">
+    <wsdl:part name="reservationId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentHttpGetIn">
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCommentModel" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserModel" />
+  </wsdl:message>
+  <wsdl:message name="GetBookHttpGetIn">
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBookHttpGetOut">
+    <wsdl:part name="Body" element="tns:BookModel" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+    <wsdl:part name="comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RateBookHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+    <wsdl:part name="rate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RateBookHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyBookDeadlineHttpGetIn" />
+  <wsdl:message name="NotifyBookDeadlineHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookLogsModel" />
+  </wsdl:message>
+  <wsdl:message name="VerifyEmailHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyEmailHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSubjectHttpPostIn" />
+  <wsdl:message name="DownloadSubjectHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSubjectModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookHttpPostIn" />
+  <wsdl:message name="DownloadBookHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadAuthorHttpPostIn" />
+  <wsdl:message name="DownloadAuthorHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAuthorModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadBookAuthorsHttpPostIn" />
+  <wsdl:message name="DownloadBookAuthorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookAuthorModel" />
+  </wsdl:message>
+  <wsdl:message name="DownloadPublisherHttpPostIn" />
+  <wsdl:message name="DownloadPublisherHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPublisherModel" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewReservationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReservationModel" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReserveBookHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationHttpPostIn">
+    <wsdl:part name="reservationId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelReservationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentHttpPostIn">
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewCommentHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCommentModel" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserModel" />
+  </wsdl:message>
+  <wsdl:message name="GetBookHttpPostIn">
+    <wsdl:part name="bookId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBookHttpPostOut">
+    <wsdl:part name="Body" element="tns:BookModel" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+    <wsdl:part name="comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddNewCommentHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RateBookHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="bookId" type="s:string" />
+    <wsdl:part name="rate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RateBookHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NotifyBookDeadlineHttpPostIn" />
+  <wsdl:message name="NotifyBookDeadlineHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBookLogsModel" />
+  </wsdl:message>
+  <wsdl:portType name="SampleWebServiceSoap">
+    <wsdl:operation name="VerifyEmail">
+      <wsdl:input message="tns:VerifyEmailSoapIn" />
+      <wsdl:output message="tns:VerifyEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <wsdl:input message="tns:DownloadSubjectSoapIn" />
+      <wsdl:output message="tns:DownloadSubjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <wsdl:input message="tns:DownloadBookSoapIn" />
+      <wsdl:output message="tns:DownloadBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <wsdl:input message="tns:DownloadAuthorSoapIn" />
+      <wsdl:output message="tns:DownloadAuthorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <wsdl:input message="tns:DownloadBookAuthorsSoapIn" />
+      <wsdl:output message="tns:DownloadBookAuthorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <wsdl:input message="tns:DownloadPublisherSoapIn" />
+      <wsdl:output message="tns:DownloadPublisherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <wsdl:input message="tns:ViewReservationSoapIn" />
+      <wsdl:output message="tns:ViewReservationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <wsdl:input message="tns:ReserveBookSoapIn" />
+      <wsdl:output message="tns:ReserveBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <wsdl:input message="tns:CancelReservationSoapIn" />
+      <wsdl:output message="tns:CancelReservationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <wsdl:input message="tns:ViewCommentSoapIn" />
+      <wsdl:output message="tns:ViewCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserSoapIn" />
+      <wsdl:output message="tns:GetUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <wsdl:input message="tns:GetBookSoapIn" />
+      <wsdl:output message="tns:GetBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <wsdl:input message="tns:AddNewCommentSoapIn" />
+      <wsdl:output message="tns:AddNewCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <wsdl:input message="tns:RateBookSoapIn" />
+      <wsdl:output message="tns:RateBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <wsdl:input message="tns:NotifyBookDeadlineSoapIn" />
+      <wsdl:output message="tns:NotifyBookDeadlineSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SampleWebServiceHttpGet">
+    <wsdl:operation name="VerifyEmail">
+      <wsdl:input message="tns:VerifyEmailHttpGetIn" />
+      <wsdl:output message="tns:VerifyEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <wsdl:input message="tns:DownloadSubjectHttpGetIn" />
+      <wsdl:output message="tns:DownloadSubjectHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <wsdl:input message="tns:DownloadBookHttpGetIn" />
+      <wsdl:output message="tns:DownloadBookHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <wsdl:input message="tns:DownloadAuthorHttpGetIn" />
+      <wsdl:output message="tns:DownloadAuthorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <wsdl:input message="tns:DownloadBookAuthorsHttpGetIn" />
+      <wsdl:output message="tns:DownloadBookAuthorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <wsdl:input message="tns:DownloadPublisherHttpGetIn" />
+      <wsdl:output message="tns:DownloadPublisherHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <wsdl:input message="tns:ViewReservationHttpGetIn" />
+      <wsdl:output message="tns:ViewReservationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <wsdl:input message="tns:ReserveBookHttpGetIn" />
+      <wsdl:output message="tns:ReserveBookHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <wsdl:input message="tns:CancelReservationHttpGetIn" />
+      <wsdl:output message="tns:CancelReservationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <wsdl:input message="tns:ViewCommentHttpGetIn" />
+      <wsdl:output message="tns:ViewCommentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserHttpGetIn" />
+      <wsdl:output message="tns:GetUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <wsdl:input message="tns:GetBookHttpGetIn" />
+      <wsdl:output message="tns:GetBookHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <wsdl:input message="tns:AddNewCommentHttpGetIn" />
+      <wsdl:output message="tns:AddNewCommentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <wsdl:input message="tns:RateBookHttpGetIn" />
+      <wsdl:output message="tns:RateBookHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <wsdl:input message="tns:NotifyBookDeadlineHttpGetIn" />
+      <wsdl:output message="tns:NotifyBookDeadlineHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SampleWebServiceHttpPost">
+    <wsdl:operation name="VerifyEmail">
+      <wsdl:input message="tns:VerifyEmailHttpPostIn" />
+      <wsdl:output message="tns:VerifyEmailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <wsdl:input message="tns:DownloadSubjectHttpPostIn" />
+      <wsdl:output message="tns:DownloadSubjectHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <wsdl:input message="tns:DownloadBookHttpPostIn" />
+      <wsdl:output message="tns:DownloadBookHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <wsdl:input message="tns:DownloadAuthorHttpPostIn" />
+      <wsdl:output message="tns:DownloadAuthorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <wsdl:input message="tns:DownloadBookAuthorsHttpPostIn" />
+      <wsdl:output message="tns:DownloadBookAuthorsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <wsdl:input message="tns:DownloadPublisherHttpPostIn" />
+      <wsdl:output message="tns:DownloadPublisherHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <wsdl:input message="tns:ViewReservationHttpPostIn" />
+      <wsdl:output message="tns:ViewReservationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <wsdl:input message="tns:ReserveBookHttpPostIn" />
+      <wsdl:output message="tns:ReserveBookHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <wsdl:input message="tns:CancelReservationHttpPostIn" />
+      <wsdl:output message="tns:CancelReservationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <wsdl:input message="tns:ViewCommentHttpPostIn" />
+      <wsdl:output message="tns:ViewCommentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserHttpPostIn" />
+      <wsdl:output message="tns:GetUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <wsdl:input message="tns:GetBookHttpPostIn" />
+      <wsdl:output message="tns:GetBookHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <wsdl:input message="tns:AddNewCommentHttpPostIn" />
+      <wsdl:output message="tns:AddNewCommentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <wsdl:input message="tns:RateBookHttpPostIn" />
+      <wsdl:output message="tns:RateBookHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <wsdl:input message="tns:NotifyBookDeadlineHttpPostIn" />
+      <wsdl:output message="tns:NotifyBookDeadlineHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SampleWebServiceSoap" type="tns:SampleWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerifyEmail">
+      <soap:operation soapAction="http://microsoft.com/webservices/VerifyEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <soap:operation soapAction="http://microsoft.com/webservices/DownloadSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <soap:operation soapAction="http://microsoft.com/webservices/DownloadBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <soap:operation soapAction="http://microsoft.com/webservices/DownloadAuthor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <soap:operation soapAction="http://microsoft.com/webservices/DownloadBookAuthors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <soap:operation soapAction="http://microsoft.com/webservices/DownloadPublisher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <soap:operation soapAction="http://microsoft.com/webservices/ViewReservation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <soap:operation soapAction="http://microsoft.com/webservices/ReserveBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <soap:operation soapAction="http://microsoft.com/webservices/CancelReservation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <soap:operation soapAction="http://microsoft.com/webservices/ViewComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://microsoft.com/webservices/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <soap:operation soapAction="http://microsoft.com/webservices/GetBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <soap:operation soapAction="http://microsoft.com/webservices/AddNewComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <soap:operation soapAction="http://microsoft.com/webservices/RateBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <soap:operation soapAction="http://microsoft.com/webservices/NotifyBookDeadline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SampleWebServiceSoap12" type="tns:SampleWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerifyEmail">
+      <soap12:operation soapAction="http://microsoft.com/webservices/VerifyEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <soap12:operation soapAction="http://microsoft.com/webservices/DownloadSubject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <soap12:operation soapAction="http://microsoft.com/webservices/DownloadBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <soap12:operation soapAction="http://microsoft.com/webservices/DownloadAuthor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <soap12:operation soapAction="http://microsoft.com/webservices/DownloadBookAuthors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <soap12:operation soapAction="http://microsoft.com/webservices/DownloadPublisher" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <soap12:operation soapAction="http://microsoft.com/webservices/ViewReservation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <soap12:operation soapAction="http://microsoft.com/webservices/ReserveBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <soap12:operation soapAction="http://microsoft.com/webservices/CancelReservation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <soap12:operation soapAction="http://microsoft.com/webservices/ViewComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap12:operation soapAction="http://microsoft.com/webservices/GetUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <soap12:operation soapAction="http://microsoft.com/webservices/GetBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <soap12:operation soapAction="http://microsoft.com/webservices/AddNewComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <soap12:operation soapAction="http://microsoft.com/webservices/RateBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <soap12:operation soapAction="http://microsoft.com/webservices/NotifyBookDeadline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SampleWebServiceHttpGet" type="tns:SampleWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="VerifyEmail">
+      <http:operation location="/VerifyEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <http:operation location="/DownloadSubject" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <http:operation location="/DownloadBook" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <http:operation location="/DownloadAuthor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <http:operation location="/DownloadBookAuthors" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <http:operation location="/DownloadPublisher" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <http:operation location="/ViewReservation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <http:operation location="/ReserveBook" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <http:operation location="/CancelReservation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <http:operation location="/ViewComment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <http:operation location="/GetUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <http:operation location="/GetBook" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <http:operation location="/AddNewComment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <http:operation location="/RateBook" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <http:operation location="/NotifyBookDeadline" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SampleWebServiceHttpPost" type="tns:SampleWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="VerifyEmail">
+      <http:operation location="/VerifyEmail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSubject">
+      <http:operation location="/DownloadSubject" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBook">
+      <http:operation location="/DownloadBook" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAuthor">
+      <http:operation location="/DownloadAuthor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadBookAuthors">
+      <http:operation location="/DownloadBookAuthors" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPublisher">
+      <http:operation location="/DownloadPublisher" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReservation">
+      <http:operation location="/ViewReservation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveBook">
+      <http:operation location="/ReserveBook" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReservation">
+      <http:operation location="/CancelReservation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewComment">
+      <http:operation location="/ViewComment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <http:operation location="/GetUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <http:operation location="/GetBook" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewComment">
+      <http:operation location="/AddNewComment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateBook">
+      <http:operation location="/RateBook" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyBookDeadline">
+      <http:operation location="/NotifyBookDeadline" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleWebService">
+    <wsdl:port name="SampleWebServiceSoap" binding="tns:SampleWebServiceSoap">
+      <soap:address location="http://thelibraryisnear.azurewebsites.net/WebServices/SampleWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SampleWebServiceSoap12" binding="tns:SampleWebServiceSoap12">
+      <soap12:address location="http://thelibraryisnear.azurewebsites.net/WebServices/SampleWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SampleWebServiceHttpGet" binding="tns:SampleWebServiceHttpGet">
+      <http:address location="http://thelibraryisnear.azurewebsites.net/WebServices/SampleWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SampleWebServiceHttpPost" binding="tns:SampleWebServiceHttpPost">
+      <http:address location="http://thelibraryisnear.azurewebsites.net/WebServices/SampleWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

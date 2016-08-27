@@ -1,0 +1,177 @@
+﻿@model library_prototype.Models.MultipleModel.UserProfileVM
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //WebImage image = null;
+    //var newFileName = "";
+    //var imagePath = "";
+    //if(IsPost)
+    //{
+    //    image = WebImage.GetImageFromRequest();
+    //    if(image!=null)
+    //    {
+    //        newFileName = Guid.NewGuid().ToString()+"_"+Path.GetFileName(image.FileName);
+    //        imagePath = @"Image\profile_picture\" + newFileName;
+    //        image.Save(@"~/" + imagePath);
+    //    }
+    //}
+    var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+    var getUserId = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault();
+
+}
+<script>
+    function UserProfileMessage(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            document.getElementById("commentForm").reset();
+            document.getElementsByName('NewComment.Comment').val("");
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:UserProfileMessage(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+    
+</script>
+<div class="uk-container uk-container-center" style="max-width:100%; padding:0px">
+    <div class="uk-grid uk-margin-large-top">
+        <div class="uk-width-1-1 uk-block uk-block-primary">
+            <div class="uk-grid">
+                <div class="uk-width-medium-1-4 uk-text-center">
+                    <div class="uk-thumbnail uk-border-circle uk-vertical-align-bottom">
+                        <img class="uk-border-circle" width="200" height="200" src="@Url.Content("~/Image/default/profile_picture.png")" alt="">
+                    </div>
+                </div>
+                <div class="uk-width-3-4">
+                    <h2 class="uk-margin-bottom-remove uk-text-contrast">Name: @Html.DisplayFor(u => u.User.Student.FirstName) @Html.DisplayFor(u => u.User.Student.MiddleInitial). @Html.DisplayFor(u => u.User.Student.LastName)</h2>
+                    <h2 class="uk-margin-bottom-remove uk-margin-top-remove uk-text-contrast">Year/Grade: @Html.Raw(Model.User.Student.Section.Grade.Grade + " - "+ Model.User.Student.Section.Section)</h2>
+                    <h2 class="uk-margin-bottom-remove uk-margin-top-remove uk-text-contrast">Birthday: @Html.Raw(Model.User.Student.Birthday.Value.ToString("m"))</h2>
+                    <h2 class="uk-margin-bottom-remove uk-margin-top-remove uk-text-contrast">Email: @Html.DisplayFor(u=>u.User.Email)</h2>
+                    <h2 class="uk-margin-bottom-remove uk-margin-top-remove uk-text-contrast">Contact No.: @Html.DisplayFor(u => u.User.Student.ContactNumber)</h2>
+                    <h2 class="uk-margin-bottom-remove uk-margin-top-remove uk-text-contrast">Address: @Html.Raw(Model.User.Student.StudentAddress.Address1 +" "+ Model.User.Student.StudentAddress.Address2+" "+Model.User.Student.StudentAddress.City)</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-grid uk-block uk-margin-top uk-padding-top-remove">
+        <div class="uk-width-1-1">
+            <h1 class="uk-text-bold uk-text-center">
+                User's Catalogue <i class="uk-icon-spin uk-icon-spinner" style="display:none" id="catalogue-loading"></i>
+            </h1>
+        </div>
+        <div class="uk-width-1-1">
+            <ul class="uk-tab uk-tab-grid" data-uk-tab>
+                <li class="">
+                    @Ajax.ActionLink("Reservation", "ViewReservation", new { id = getUserId.ToString()}, new AjaxOptions { HttpMethod="GET", UpdateTargetId= "user-catalogue", LoadingElementId= "catalogue-loading", OnSuccess="UserProfileMessage()", InsertionMode=InsertionMode.Replace }, new { @class= "" })
+                </li>
+                <li>
+                    @Ajax.ActionLink("On-hand", "ViewOnHand", new { id = getUserId.ToString() }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "user-catalogue", LoadingElementId = "catalogue-loading", OnSuccess = "UserProfileMessage()", InsertionMode = InsertionMode.Replace }, new { @class = "" })
+                </li>
+            </ul>
+            <div class="" id="user-catalogue">
+
+            </div>
+        </div>
+    </div>
+    <div class="uk-grid uk-block uk-block-primary uk-margin-large-bottom uk-text-contrast">
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid uk-margin-left">
+                <div class="uk-width-1-6 uk-text-center">
+                    <i class="uk-icon-book uk-icon-large"></i>
+                </div>
+                <div class="uk-width-4-6">
+                    <h3 class="uk-text-bold uk-text-contrast">Latest Book Borrrowed</h3>
+                    @if (Model.User.BookLogs.Count != 0)
+                    {
+                        foreach (var bor in Model.User.BookLogs.OrderByDescending(b => b.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                @Html.DisplayFor(modelItem => bor.Book.Title)
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid">
+                <div class="uk-width-1-6 uk-text-center">
+                    <i class="uk-icon-comment uk-icon-large"></i>
+                </div>
+                <div class="uk-width-4-6">
+                    <h3 class="uk-text-bold uk-text-contrast">Latest Comments</h3>
+                    @if (Model.User.Comments.Count != 0)
+                    {
+                        foreach (var comment in Model.User.Comments.OrderByDescending(b => b.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                <span class="uk-text-bold">@Html.Raw("(" + comment.Book.Title + ") ")</span> @Html.DisplayFor(modelItem => comment.Comment)
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid">
+                <div class="uk-width-1-6 uk-text-center">
+                    <i class="uk-icon-star uk-icon-large"></i>
+                </div>
+                <div class="uk-width-4-6">
+                    <h3 class="uk-text-bold uk-text-contrast">Latest Rates</h3>
+                    @if (Model.User.Ratings.Count() != 0)
+                    {
+                        foreach (var rate in Model.User.Ratings.OrderByDescending(r => r.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                You gave @Html.DisplayFor(modelItem => rate.Rate) points for <span class="uk-text-bold">@Html.DisplayFor(modelItem => rate.Book.Title)</span>
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid uk-margin-left">
+                <div class="uk-width-1-6 uk-text-center">
+                    <i class="uk-icon-bookmark uk-icon-large"></i>
+                </div>
+                <div class="uk-width-4-6">
+                    <h3 class="uk-text-bold uk-text-contrast">Latest Book Recommendations</h3>
+                    @if (Model.User.HomeRecommendations.Count != 0)
+                    {
+                        foreach (var bor in Model.User.HomeRecommendations.OrderByDescending(b => b.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                @Html.Raw( bor.FromUser.Student.FirstName+" "+bor.FromUser.Student.LastName+" recommends "+bor.Book.Title)
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

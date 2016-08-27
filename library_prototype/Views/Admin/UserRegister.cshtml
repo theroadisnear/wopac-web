@@ -1,0 +1,96 @@
+﻿@using System.Web.Optimization;
+
+@model library_prototype.Models.RegisterModel
+@{
+    ViewBag.Title = "UserRegister";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@Scripts.Render("~/Scripts/components/datepicker.min.js")
+@Scripts.Render("~/Scripts/components/form-select.min.js")
+@Styles.Render("~/Content/components/form-select.almost-flat.min.css")
+@Styles.Render("~/Content/components/datepicker.almost-flat.min.css")
+
+
+@using (Html.BeginForm("UserRegister", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal" }))
+{
+    <fieldset data-uk-margin>
+        <legend>Account Registration</legend>
+        @Html.ValidationSummary(true)
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.FirstName, new { @for = "firstName", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.TextBoxFor(u => u.FirstName, new { @placeholder = "first name", @id = "firstName" })
+                @Html.ValidationMessageFor(u => u.FirstName, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.MiddleInitial, new { @for = "middleInitial", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.TextBoxFor(u => u.MiddleInitial, new { @placeholder = "middle initial", @id = "middleInitial" })
+                @Html.ValidationMessageFor(u => u.MiddleInitial, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.LastName, new { @for = "lastName", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.TextBoxFor(u => u.LastName, new { @placeholder = "last name", @id = "lastName" })
+                @Html.ValidationMessageFor(u => u.LastName, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.Grade, new { @for = "year", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.DropDownListFor(u => u.Grade, new List<SelectListItem>
+                   {
+                       new SelectListItem(){Text = "Grade 1", Value = "Grade 1"},
+                       new SelectListItem(){Text = "Grade 2", Value = "Grade 2"},
+                       new SelectListItem(){Text = "Grade 3", Value = "Grade 3"},
+                       new SelectListItem(){Text = "Grade 4", Value = "Grade 4"},
+                       new SelectListItem(){Text = "Grade 5", Value = "Grade 5"},
+                       new SelectListItem(){Text = "Grade 6", Value = "Grade 6"},
+                       new SelectListItem(){Text = "Grade 7", Value = "Grade 7"},
+                       new SelectListItem(){Text = "Grade 8", Value = "Grade 8"},
+                       new SelectListItem(){Text = "Grade 9", Value = "Grade 9"},
+                       new SelectListItem(){Text = "Grade 10", Value = "Grade 10"},
+                       new SelectListItem(){Text = "Grade 11", Value = "Grade 11"},
+                       new SelectListItem(){Text = "Grade 12", Value = "Grade 12"},
+                   }, new { @id = "year" })
+                @Html.ValidationMessageFor(u => u.FirstName, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.Section, new { @for = "section", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.DropDownListFor(u => u.Section, new List<SelectListItem>
+                   {
+                       new SelectListItem(){Text = "St. Therese", Value = "1"},
+                       new SelectListItem(){Text = "St. Francis of Assisi", Value = "2"},
+                       new SelectListItem(){Text = "St. Blaise", Value = "3"},
+                   }, new { @id = "section" })
+                @Html.ValidationMessageFor(u => u.Section, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.Gender, new { @for = "gender", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.DropDownListFor(u => u.Gender, new List<SelectListItem>
+                   {
+                       new SelectListItem(){Text = "Male", Value = "male", Selected=true},
+                       new SelectListItem(){Text = "Female", Value = "female"},
+                   }, new { @id = "gender" })
+                @Html.ValidationMessageFor(u => u.Section, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            @Html.LabelFor(u => u.EmailAddress, new { @for = "emailAddress", @class = "uk-form-label" })
+            <div class="uk-form-controls">
+                @Html.TextBoxFor(u => u.EmailAddress, new { @placeholder = "email address", @id = "emailAddress" })
+                @Html.ValidationMessageFor(u => u.EmailAddress, null, new { @class = "uk-form-danger" })
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <button type="submit" class="uk-width-1-5 uk-align-right uk-button uk-button-primary">Submit</button>
+        </div>
+    </fieldset>
+}

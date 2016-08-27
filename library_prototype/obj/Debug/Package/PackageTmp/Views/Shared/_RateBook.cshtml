@@ -1,0 +1,45 @@
+﻿@model library_prototype.Models.MultipleModel.BooksVM
+<h3 class="uk-text-bold">Ratings</h3>
+<script>
+    function RateMessage(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:RateMessage(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+</script>
+<p class="uk-margin-remove">
+    @if (Model.Book.Ratings.Count >= 1)
+    {
+        var rating = Model.Book.Ratings.ToList();
+        int ave = (int)Math.Ceiling(rating.Select(r => r.Rate).Average());
+        int sum = rating.Select(r => r.Rate).Sum();
+        int total = Model.Book.Ratings.Count() * 3;
+        if (ave < 1)
+        {
+            <i class="uk-icon-star-o"></i>
+        }
+        else if (ave == 1)
+        {
+            <i class="uk-icon-star-half"></i>
+        }
+        else if (ave > 1)
+        {
+            <i class="uk-icon-star"></i>
+        }
+        @Html.Raw(sum + " out of " + total)
+    }
+    else if (Model.Book.Ratings.Count == 0)
+    {
+        @Html.Raw("Be the first to rate")
+    }
+</p>

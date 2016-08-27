@@ -1,0 +1,127 @@
+﻿@model library_prototype.Models.MultipleModel.UserInformationVM
+<script>
+    function Message(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:Message(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+</script>
+<ul class="uk-subnav uk-hidden-small uk-align-right">
+    <li data-uk-dropdown="{mode:'click'}">
+        <a class="uk-icon-gear uk-icon-large"></a>
+        <div class="uk-dropdown uk-dropdown-small">
+            <ul class="uk-nav uk-nav-dropdown uk-dropdown-up">
+                <li><a class="" data-uk-modal="{target:'#update-user'}">Update</a></li>
+                <li><a class="" data-uk-modal="{target:'#delete-user'}">Delete</a></li>
+                <li><a class="" data-uk-modal="{target:'#delete-user'}">ReActvate</a></li>
+                <li><a class="" data-uk-modal="{target:'#reset-pin'}">Reset Pin</a></li>
+            </ul>
+        </div>
+    </li>
+</ul>
+<h1><span class="uk-vertical-align-middle">@Html.ActionLink(" ", "UserIndex", "Admin", new { id = Model.User.Student.SectionId }, new { @class = "uk-slidenav uk-slidenav-previous" })</span> User Information</h1>
+<span class="uk-align-right uk-hidden-small">
+    <img class="uk-border-circle" width="150" height="150" src="@Url.Content("~/Image/default/profile_picture.png")" />
+</span>
+<span class="uk-align-right uk-visible-small">
+    <img class="uk-border-circle" width="50" height="50" src="@Url.Content("~/Image/default/profile_picture.png")" />
+</span>
+<div class="">
+    <div class="uk-form-row">
+        <div class="uk-margin-top">
+            <dl class="uk-description-list-horizontal">
+                <dt class="uk-text-right">
+                    Name:
+                </dt>
+                <dt class="uk-text-right">
+                    Grade/Year:
+                </dt>
+                <dt class="uk-text-right">
+                    Section:
+                </dt>
+                <dd id="">
+                    @Html.DisplayFor(u => u.User.Student.LastName), @Html.DisplayFor(u => u.User.Student.FirstName) @Html.DisplayFor(u => u.User.Student.MiddleInitial).
+                </dd>
+                <dd>
+                    @Html.DisplayFor(u => u.User.Student.Section.Grade.Grade)
+                </dd>
+                <dd>
+                    @Html.DisplayFor(u => u.User.Student.Section.Section)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div id="update-user" class="uk-modal">
+    @using (Ajax.BeginForm("UpdateUser", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "user-profile", LoadingElementId = "update-user-load", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id = "update-user-form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend>Update User Information <i class="uk-icon-spin uk-icon-spinner" id="update-user-load" style="display:none"></i></legend>
+                    @Html.HiddenFor(u => u.User.Id)
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.NewUserInfo.FirstName, new { @for = "firstName", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.NewUserInfo.FirstName, new { @id = "firstName", @Value = Model.User.Student.FirstName, @required = "required" })
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.NewUserInfo.MiddleInitial, new { @for = "middleInitial", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.NewUserInfo.MiddleInitial, new { @id = "middleInitial", @Value = Model.User.Student.MiddleInitial, @required = "required" })
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.NewUserInfo.LastName, new { @for = "lastName", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.NewUserInfo.LastName, new { @id = "lastName", @Value = Model.User.Student.LastName, @required = "required" })
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.NewUserInfo.Gender, new { @for = "gender", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @if (Model.User.Student.Gender == "male")
+                            {
+                                @Html.DropDownListFor(u => u.NewUserInfo.Gender, new List<SelectListItem>
+                                {
+                                    new SelectListItem() { Text = "Male", Value = "male", Selected = true },
+                                   new SelectListItem() { Text = "Female", Value = "female", Selected = false },
+                               }, new { @id = "gender" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(u => u.NewUserInfo.Gender, new List<SelectListItem>
+                                {
+                                new SelectListItem() { Text = "Male", Value = "male", Selected = false },
+                                   new SelectListItem() { Text = "Female", Value = "female", Selected = true },
+                               }, new { @id = "gender" })
+                            }
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.NewUserInfo.EmailAddress, new { @for = "emailAddress", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.NewUserInfo.EmailAddress, new { @id = "emailAddress", @Value = Model.User.Email, @required = "required", @type = "email" })
+                        </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-width-1-5 uk-align-right uk-button uk-button-primary">Update</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model List<library_prototype.DAL.LibraryDbContext.ReservationModel>
+<script>
+    UIkit.domObserve('#user-catalogue', function (element) { /* apply on dom change within element */ });
+</script>
+<div class="uk-grid uk-margin-left uk-margin-top">
+    @if (Model.Count != 0)
+    {
+        foreach (var res in Model)
+        {
+            <div class="uk-width-medium-1-5">
+                <div class="uk-panel uk-panel-box uk-panel-box-primary-hover">
+                    <h3 class="uk-text-bold uk-margin-bottom-remove">
+                        @Html.DisplayFor(modelItem => res.Book.Title) 
+                        @Ajax.ActionLink(" ", "CancelReservation", new { id = res.Id}, new AjaxOptions { HttpMethod="POST",InsertionMode=InsertionMode.Replace, OnSuccess= "UserProfileMessage()", UpdateTargetId = "user-catalogue", LoadingElementId = "catalogue-loading" }, new { @class="uk-close uk-margin-small-right uk-margin-small-top uk-position-top-right", @data_uk_tooltip="pos:'top'", @title="Cancel Reservation"})
+                    </h3>
+                    <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                        Created: @Html.Raw(res.CreatedAt.Value.ToString("m"))
+                    </p>
+                    <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                        @{ 
+                            var db = new library_prototype.DAL.LibraryDbContext();
+                            var getResBook = db.Reservations.Where(r => r.BookId == res.BookId && r.Delete == false).OrderBy(r => r.CreatedAt).ToList();
+                        }
+                        Queue: @Html.Raw(getResBook.FindIndex(r=>r.UserId == res.UserId))
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else if (Model.Count == 0)
+    {
+        <p class="">
+            No Reservations
+        </p>
+    }
+</div>

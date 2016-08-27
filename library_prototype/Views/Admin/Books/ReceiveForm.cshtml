@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "ReceiveForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <div class="uk-container uk-container-center uk-width-1-2">
+        <form class="uk-form uk-form-horizontal">
+            <fieldset data-uk-margin>
+                <legend>Receive Form</legend>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipc">Name:</label>
+                    Rey Tumulak
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipc">Book:</label>
+                    Systems Analysis and Design
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipc">Due Date:</label>
+                    04.10.2015
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipc">Note:</label>
+                </div>
+                <div class="uk-form-row">
+                    <textarea cols="30" rows="5"> </textarea>
+                </div>
+            </fieldset>
+            <br />
+            <div class="uk-form-row">
+                <a class="uk-width-1-5 uk-align-right uk-button uk-button-primary" href="#">OK</a>
+                <a class="uk-width-1-5 uk-align-right uk-button uk-button-danger" href="#">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button class="uk-button" data-uk-modal="{target:'#my-id'}">...</button>
+
+<!-- This is the modal -->
+<div id="my-id" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+
+    </div>
+</div>
+

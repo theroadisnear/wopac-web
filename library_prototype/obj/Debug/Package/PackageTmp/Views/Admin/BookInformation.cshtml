@@ -1,0 +1,410 @@
+﻿@model library_prototype.Models.MultipleModel.BookInformationVM
+
+@{
+    ViewBag.Title = "BookInformation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Autocomplete for subject
+        function ajaxSubject(release) {
+            var input = $('#bookSubject').val();
+            var json = "";
+            $.ajax({
+            url: "@Url.Action("SubjectAutoComplete", "Admin")",
+            contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+            })
+            .success(function(result)
+            {
+                release(result);
+            })
+        }
+        var autocomplete = $.UIkit.autocomplete($('#autocompleteSubject'), {
+            'source': ajaxSubject,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.Subject}}" data-valueCallNo="{{$item.CallNo}}""><a>{{$item.CallNo}}<div>{{$item.Subject}}</div></a></li>{{/items}}</ul>'
+        });
+        $('#bookSubject').change(function ()
+        {
+            $('#callNumber').val(autocomplete.selected.data().valuecallno)
+        });
+
+        //Call Number
+        function ajaxCallNumber(release) {
+            var input = $('#callNumber').val();
+            $.ajax({
+                url: "@Url.Action("CallNumberAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+            })
+            .success(function(result)
+            {
+                $('#bookSubject').val(result.Subject);
+            })
+        }
+        $('#callNumber').change(function ()
+        {
+            ajaxCallNumber();
+        });
+
+        //Autocomplete for publisher
+        function ajaxPublisher(release) {
+            var input = $('#publisherName').val();
+            var json = "";
+            $.ajax({
+                url: "@Url.Action("PublisherAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+        })
+        .success(function(result)
+        {
+            release(result);
+        })
+    }
+        var autocompletepublisher = $.UIkit.autocomplete($('#autoCompletePublisher'), {
+            'source': ajaxPublisher,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.PublisherName}}"><a>{{$item.PublisherName}}</a></li>{{/items}}</ul>'
+        });
+
+        //Autocomplete for author
+        function ajaxAuthor(release) {
+            var input = $('#authorLastName').val();
+            var input2 = $('#authorFirstName').val();
+            $.ajax({
+                url: "@Url.Action("AuthorAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input, term1: input2 }
+        })
+        .success(function(result)
+        {
+            release(result);
+            console.log(result);
+        })
+    }
+        var autocompleteAuthor = $.UIkit.autocomplete($('#autocompleteAuthor'), {
+            'source': ajaxAuthor,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.LastName}}" data-valueFirstName="{{$item.FirstName}}" data-valueMiddleInitial="{{$item.MiddleInitial}}"><a>{{$item.LastName}}, {{$item.FirstName}} {{$item.MiddleInitial}}</a></li>{{/items}}</ul>'
+    });
+    $('#authorLastName').change(function ()
+    {
+        $('#authorMiddleInitial').val(autocompleteAuthor.selected.data().valuemiddleinitial);
+        $('#authorFirstName').val(autocompleteAuthor.selected.data().valuefirstname);
+    });
+        //add author create
+    $('#addNewAuthor').click(function () {
+        $.ajax({
+            url: "@Url.Action("UpdateAuthor", "Admin")",
+            success: function (data) {
+                $("#formAuthorList").append(data);
+            }
+    });
+
+    });
+
+        $(function () {
+            $("#synopsis").html("@Html.Raw(Model.Book.Synopsis)");
+        })
+ });
+</script>
+<div class="uk-margin-small-left">
+    <ul class="uk-subnav uk-hidden-small uk-align-right">
+        <li data-uk-dropdown="{delay:'200'}">
+            <a class="uk-icon-gear uk-icon-large uk-text-primary"></a>
+            <div class="uk-dropdown uk-dropdown-small">
+                <ul class="uk-nav uk-nav-dropdown uk-dropdown-up">
+                    <li><a class="" data-uk-modal="{target:'#update-book'}">Update Book</a></li>
+                    <li><a class="" data-uk-modal="{target:'#delete-book'}">Delete Book</a></li>
+                    <li><a class="" data-uk-modal="{target:'#update-book-author'}">Update Author</a></li>
+                    <li><a class=" " data-uk-modal="{target:'#track-book'}">Track</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <h1 class="">
+        <span class="uk-vertical-align-middle">@Html.ActionLink(" ", "LibraryIndex", "Admin", new { @class = "uk-slidenav uk-slidenav-previous" })</span>
+        @Html.DisplayFor(b=>b.Book.Title)
+    </h1>
+    <div class="uk-grid" id="book-information">
+        @Html.Partial("_BookInformation")
+    </div>
+    <div class="uk-grid uk-panel uk-panel-box uk-margin-small-left">
+        <div class="uk-width-1-1 uk-margin-small-bottom">
+            <h3 class="uk-text-bold uk-text-primary">Latest Book Activity</h3>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid">
+                <div class="uk-width-5-6">
+                    <h4 class="uk-text-bold"><i class="uk-icon-book uk-icon"></i>Book Borrower</h4>
+                    @if (Model.Book.BookLogs.Count() != 0)
+                    {
+                        foreach (var log in Model.Book.BookLogs.OrderByDescending(b => b.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                @Html.Raw(log.Book.Title+"was borrowed by " + log.User.Student.FirstName+" " + log.User.Student.MiddleInitial+". "+log.User.Student.LastName+" ("+log.CreatedAt.Value.ToString("F")+")")
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No logs</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid">
+                <div class="uk-width-5-6">
+                    <h4 class="uk-text-bold"><i class="uk-icon-comment uk-icon"></i>Comments</h4>
+                    @if (Model.Book.Comments.Count != 0)
+                    {
+                        foreach (var comment in Model.Book.Comments.OrderByDescending(b => b.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                <span class="uk-text-bold">@Html.Raw(comment.User.Student.FirstName+" "+ comment.User.Student.MiddleInitial +" "+ comment.User.Student.LastName + ": ")</span> @Html.DisplayFor(modelItem => comment.Comment)
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+            <div class="uk-grid">
+                <div class="uk-width-5-6">
+                    <h4 class="uk-text-bold">
+                        <i class="uk-icon-star uk-icon"></i>
+                        Rates
+                    </h4>
+                    @if (Model.Book.Ratings.Count() != 0)
+                    {
+                        foreach (var rate in Model.Book.Ratings.OrderByDescending(r => r.CreatedAt).Take(5).ToList())
+                        {
+                            <p class="uk-margin-top-remove uk-margin-bottom-remove">
+                                <span class="uk-text-bold">@Html.Raw(rate.User.Student.FirstName + " "+rate.User.Student.MiddleInitial+". "+ rate.User.Student.LastName+"")</span> gave @Html.DisplayFor(modelItem => rate.Rate) points
+                            </p>
+                        }
+                    }
+                    else
+                    {
+                        <p>No records</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="track-book" class="uk-modal">
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <a class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+            <h2 class="uk-text-primary">
+                Track <i class="uk-icon-spin uk-icon-spinner" style="display:none" id="track-loading"></i>
+            </h2>
+        </div>
+        <div>
+            <ul class="uk-tab" data-uk-tab>
+                <li class="uk-active">
+                    @Ajax.ActionLink("History", "GetBookHistory", new { id = Model.Book.Id }, new AjaxOptions { LoadingElementId="track-loading", HttpMethod="GET", InsertionMode=InsertionMode.Replace, UpdateTargetId="track-content"}, new { @class="uk-active"})
+                </li>
+                <li>
+                    @Ajax.ActionLink("Comments", "GetBookComment", new { id = Model.Book.Id }, new AjaxOptions {LoadingElementId="track-loading", HttpMethod="GET", InsertionMode=InsertionMode.Replace, UpdateTargetId="track-content" })
+                </li>
+            </ul>
+        </div>
+        <div id="track-content">
+            @Html.Partial("_BookHistory")
+        </div>
+    </div>
+</div>
+<div id="update-book" class="uk-modal">
+    @using (Ajax.BeginForm("UpdateBook", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "book-information", LoadingElementId = "update-book-load", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id = "update-user-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(b => b.UpdateBook.BookId, new { @Value = Model.Book.Id })
+        <div class="uk-modal-dialog uk-modal-dialog-large">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                <h2 class="uk-text-primary">
+                    Update @Html.DisplayFor(b => b.Book.Title)
+                    <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="update-book-load"></i>
+                </h2>
+            </div>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend class="uk-text-bold uk-margin-left">Book's Information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(b => b.UpdateBook.ISBN, new { @placeholder = "isbn", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookISBN", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "ISBN", @Value = Model.Book.ISBN })
+                        @Html.TextBoxFor(b => b.UpdateBook.BookTitle, new { @placeholder = "title", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookTitle", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Title", @Value = Model.Book.Title })
+                        @Html.TextBoxFor(b => b.UpdateBook.Volume, new { @id = "volumeNumber", @placeholder = "volume no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1", @max = "100", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Vollume Number", @Value = Model.Book.Volume })
+                        @Html.TextBoxFor(b => b.UpdateBook.CallNumber, new { @id = "callNumber", @placeholder = "call no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "0", @max = "999", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Call Number", @Value = Model.Book.Subject.CallNo })
+                        <div class="uk-autocomplete uk-form" id="autocompleteSubject">
+                            @Html.TextBoxFor(b => b.UpdateBook.Subject, new { @placeholder = "subject", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookSubject", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Subject", @Value = Model.Book.Subject.Subject })
+                        </div>
+                        @Html.TextBoxFor(b => b.UpdateBook.CopyRight, new { @id = "bookCopyright", @placeholder = "year", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1800", @max = "2050", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Copyright", @Value = Model.Book.Copyright.Year })
+                        <div class="uk-autocomplete uk-form" id="autoCompletePublisher">
+                            @Html.TextBoxFor(b => b.UpdateBook.PublisherName, new { @placeholder = "publisher name", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "publisherName", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Publisher Name", @Value = Model.Book.Publisher.PublisherName })
+                        </div>
+                    </div>
+                    @*<legend class="uk-text-bold uk-margin-left">
+                            Author's Information
+                            <a id="addNewAuthor" class="uk-icon-plus" data-uk-tooltip="pos:'top'" title="Add New Author Row"></a>
+                        </legend>
+                        <div class="uk-form-row uk-margin-left uk-margin-small-bottom" id="formAuthorList">
+                            @foreach (var item in Model.Book.BooksAuthors.ToList())
+                            {
+                                Html.RenderPartial("_LibraryIndexUpdateAuthors", item.Author);
+                            }
+                        </div>*@
+                    <legend class="uk-text-bold uk-margin-left">Other information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(q => q.UpdateBook.Quantity, new { @placeholder = "quantity", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "quantity", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Quantity", @step = "1", @Value = Model.Book.Quantity })
+                        @Html.TextBoxFor(b => b.UpdateBook.Price, new { @placeholder = "price", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "price", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Price", @step = "0.01", @Value = Model.Book.Price })
+                        @if (Model.Book.Borrow == true)
+                        {
+                            @Html.CheckBoxFor(b => b.UpdateBook.Borrow, new { @class = "uk-margin-small-left uk-margin-small-bottom", @id = "borrowable", @data_uk_tooltip = "pos:'top'", @title = "Borrowable", @checked = "checked" })
+                        }
+                        else if (Model.Book.Borrow == false)
+                        {
+                            @Html.CheckBoxFor(b => b.UpdateBook.Borrow, new { @class = "uk-margin-small-left uk-margin-small-bottom", @id = "borrowable", @data_uk_tooltip = "pos:'top'", @title = "Borrowable" })
+                        }
+                        @Html.LabelFor(b => b.UpdateBook.Borrow, new { @for = "borrowable" })
+                        @Html.TextAreaFor(b => b.UpdateBook.Synopsis, new { @placeholder = "synopsis", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "synopsis", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Synopsis", @Value = Model.Book.Synopsis })
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+<div id="update-book-author" class="uk-modal">
+    @using (Ajax.BeginForm("UpdateBookAuthor", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "book-information", LoadingElementId = "update-book-load", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id = "update-author-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(b => b.BookId, new { @Value = Model.Book.Id })
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                <h2 class="uk-text-primary">
+                    Update @Html.DisplayFor(b => b.Book.Title)
+                    <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="update-book-load"></i>
+                </h2>
+            </div>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend class="uk-text-bold uk-margin-left">
+                        Author's Information
+                        <a id="addNewAuthor" class="uk-icon-plus" data-uk-tooltip="pos:'top'" title="Add New Author Row"></a>
+                    </legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom" id="formAuthorList">
+                        @foreach (var item in Model.Book.BooksAuthors.ToList())
+                        {
+                            Html.RenderPartial("_LibraryIndexUpdateAuthors", item.Author);
+                        }
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+<div id="update-book" class="uk-modal">
+    @using (Ajax.BeginForm("UpdateBook", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "book-information", LoadingElementId = "update-book-load", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id = "update-user-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(b => b.UpdateBook.BookId, new { @Value = Model.Book.Id })
+        <div class="uk-modal-dialog uk-modal-dialog-large">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                <h2 class="uk-text-primary">
+                    Update @Html.DisplayFor(b => b.Book.Title)
+                    <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="update-book-load"></i>
+                </h2>
+            </div>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend class="uk-text-bold uk-margin-left">Book's Information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(b => b.UpdateBook.ISBN, new { @placeholder = "isbn", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookISBN", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "ISBN", @Value = Model.Book.ISBN })
+                        @Html.TextBoxFor(b => b.UpdateBook.BookTitle, new { @placeholder = "title", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookTitle", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Title", @Value = Model.Book.Title })
+                        @Html.TextBoxFor(b => b.UpdateBook.Volume, new { @id = "volumeNumber", @placeholder = "volume no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1", @max = "100", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Vollume Number", @Value = Model.Book.Volume })
+                        @Html.TextBoxFor(b => b.UpdateBook.CallNumber, new { @id = "callNumber", @placeholder = "call no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "0", @max = "999", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Call Number", @Value = Model.Book.Subject.CallNo })
+                        <div class="uk-autocomplete uk-form" id="autocompleteSubject">
+                            @Html.TextBoxFor(b => b.UpdateBook.Subject, new { @placeholder = "subject", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookSubject", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Subject", @Value = Model.Book.Subject.Subject })
+                        </div>
+                        @Html.TextBoxFor(b => b.UpdateBook.CopyRight, new { @id = "bookCopyright", @placeholder = "year", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1800", @max = "2050", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Copyright", @Value = Model.Book.Copyright.Year })
+                        <div class="uk-autocomplete uk-form" id="autoCompletePublisher">
+                            @Html.TextBoxFor(b => b.UpdateBook.PublisherName, new { @placeholder = "publisher name", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "publisherName", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Publisher Name", @Value = Model.Book.Publisher.PublisherName })
+                        </div>
+                    </div>
+                    @*<legend class="uk-text-bold uk-margin-left">
+                            Author's Information
+                            <a id="addNewAuthor" class="uk-icon-plus" data-uk-tooltip="pos:'top'" title="Add New Author Row"></a>
+                        </legend>
+                        <div class="uk-form-row uk-margin-left uk-margin-small-bottom" id="formAuthorList">
+                            @foreach (var item in Model.Book.BooksAuthors.ToList())
+                            {
+                                Html.RenderPartial("_LibraryIndexUpdateAuthors", item.Author);
+                            }
+                        </div>*@
+                    <legend class="uk-text-bold uk-margin-left">Other information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(q => q.UpdateBook.Quantity, new { @placeholder = "quantity", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "quantity", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Quantity", @step = "1", @Value = Model.Book.Quantity })
+                        @Html.TextBoxFor(b => b.UpdateBook.Price, new { @placeholder = "price", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "price", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Price", @step = "0.01", @Value = Model.Book.Price })
+                        @if (Model.Book.Borrow == true)
+                        {
+                            @Html.CheckBoxFor(b => b.UpdateBook.Borrow, new { @class = "uk-margin-small-left uk-margin-small-bottom", @id = "borrowable", @data_uk_tooltip = "pos:'top'", @title = "Borrowable", @checked = "checked" })
+                        }
+                        else if (Model.Book.Borrow == false)
+                        {
+                            @Html.CheckBoxFor(b => b.UpdateBook.Borrow, new { @class = "uk-margin-small-left uk-margin-small-bottom", @id = "borrowable", @data_uk_tooltip = "pos:'top'", @title = "Borrowable" })
+                        }
+                        @Html.LabelFor(b => b.UpdateBook.Borrow, new { @for = "borrowable" })
+                        @Html.TextAreaFor(b => b.UpdateBook.Synopsis, new { @placeholder = "synopsis", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "synopsis", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Synopsis", @Value = Model.Book.Synopsis })
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+<div id="delete-book" class="uk-modal">
+    @using (Html.BeginForm("DeleteBook", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend>Delete Book</legend>
+                    @Html.HiddenFor(u => u.DeleteBook.BookId, new { @Value = Model.Book.Id})
+                    <div class="uk-form-row">
+                        Are you sure to delete @Html.DisplayFor(b=>b.Book.Title) ?
+                    </div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-width-1-5 uk-align-right uk-button uk-button-primary">Yes</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    }
+</div>

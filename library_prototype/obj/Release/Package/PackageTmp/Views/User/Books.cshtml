@@ -1,0 +1,83 @@
+﻿@model library_prototype.Models.MultipleModel.BooksVM
+@{
+        ViewBag.Title = "Books";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        AjaxOptions subjectAjaxOption = new AjaxOptions()
+        {
+            HttpMethod = "GET", UpdateTargetId = "booksList", LoadingElementId = "navloading", InsertionMode = InsertionMode.Replace,
+    };
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Autocomplete for subject
+        function ajaxSearch(release) {
+            var input = $('#search').val();
+            var json = "";
+            $.ajax({
+                url: "@Url.Action("SearchAutoComplete", "User")",
+                contentType: "application/json; charset=utf-8",
+                type: "GET",
+                dataType: "json",
+                data: { term: input }
+            })
+            .success(function (result) {
+                release(result);
+            })
+        }
+        var autocomplete = $.UIkit.autocomplete($('#autoCompleteSearch'), {
+            'source': ajaxSearch,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.Title}}"><a><div>{{$item.Title}}</div></a></li>{{/items}}</ul>'
+        });
+    });
+</script>
+<div class="uk-container uk-container-center">
+    <div class="uk-grid uk-grid-divider">
+        <div class="uk-width-medium-2-10 uk-margin-large-top">
+            <div class="uk-sticky-placeholder" data-uk-sticky="{top:100, media: 0}">
+                <div class="uk-panel">
+                    <h3 class="uk-panel-title"><i class="uk-icon-book"></i> Navigation Panel <i class="uk-icon-spin uk-icon-spinner" id="navloading" style="display:none"></i></h3>
+                    @using (Ajax.BeginForm("SearchBook", "", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "navloading", UpdateTargetId = "booksList" }, new { @class = "uk-form" }))
+                    {
+                        <div class="uk-grid uk-grid-collapse">
+                            <div class="uk-width-medium-9-10 uk-autocomplete uk-form" id="autoCompleteSearch">
+                                <input type="text" placeholder="Search" id="search" name="term" class="uk-width-1-1" />
+                            </div>
+                            <div class="uk-width-medium-1-10">
+                                <button type="submit" class="uk-button uk-button-primary uk-icon-search"></button>
+                            </div>
+                        </div>
+                    }
+                    <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav>
+                        <li>
+                            <a href="#">Popular Books</a>
+                        </li>
+                        <li>
+                            <a href="#">New Books</a>
+                        </li>
+                        <li class="uk-parent">
+                            <a href="#">Subjects</a>
+                            <ul class="uk-nav-sub uk-subnav-pill">
+                                <li>@Ajax.ActionLink("Computer science, information & general works", "GetBooksbySubject", "User", new { classNumber = 000 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Philosophy and psychology", "GetBooksbySubject", "User", new { classNumber = 100 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Religion", "GetBooksbySubject", "User", new { classNumber = 200 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Social sciences", "GetBooksbySubject", "User", new { classNumber = 300 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Language", "GetBooksbySubject", "User", new { classNumber = 400 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Science", "GetBooksbySubject", "User", new { classNumber = 500 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Technology", "GetBooksbySubject", "User", new { classNumber = 600 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Arts & recreation", "GetBooksbySubject", "User", new { classNumber = 700 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("Literature", "GetBooksbySubject", "User", new { classNumber = 800 }, subjectAjaxOption)</li>
+                                <li>@Ajax.ActionLink("History & geography", "GetBooksbySubject", "User", new { classNumber = 900 }, subjectAjaxOption)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-8-10 uk-margin-large-top" id="booksList">
+            @Html.Partial("_Books", Model.Books)
+        </div>
+    </div>
+</div>
+<div id="modalBook">
+    @Html.Partial("_ShowBook")
+</div>

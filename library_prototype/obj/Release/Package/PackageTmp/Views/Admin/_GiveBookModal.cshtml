@@ -1,0 +1,54 @@
+﻿@model library_prototype.Models.MultipleModel.BorrowTabVM
+<script src="~/Scripts/components/datepicker.min.js"></script>
+<link href="~/Content/components/datepicker.gradient.min.css" rel="stylesheet" />
+@{ 
+    DateTime today = DateTime.UtcNow.AddHours(8);
+}
+@using (Ajax.BeginForm("GiveBook", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "borrow-return", LoadingElementId = "give-book-load", OnSuccess = "BRMessage()" }, new { @class = "uk-form uk-form-horizontal", @id = "give-book-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(g => g.GiveBook.UserId, new { @Value = Model.Reservation[0].UserId })
+    @Html.HiddenFor(g => g.GiveBook.BookId, new { @Value = Model.Reservation[0].BookId })
+    <div class="uk-modal-dialog uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+            <h2 class="uk-text-primary">
+                Borrower's Form
+                <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="give-book-load"></i>
+            </h2>
+        </div>
+        <form class="uk-form uk-form-horizontal">
+            <fieldset data-uk-margin>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Borrower's Name: </span>@Html.DisplayFor(b => b.Reservation[0].User.Student.FirstName) @Html.DisplayFor(b => b.Reservation[0].User.Student.MiddleInitial). @Html.DisplayFor(b => b.Reservation[0].User.Student.LastName) @Html.Raw("("+ Model.Reservation[0].User.Email + ")")
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Year&Section: </span>@Html.DisplayFor(b => b.Reservation[0].User.Student.Section.Grade.Grade) - @Html.DisplayFor(b => b.Reservation[0].User.Student.Section.Section)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">ISBN: </span>@Html.DisplayFor(b => b.Reservation[0].Book.ISBN)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Title:</span> @Html.DisplayFor(b=>b.Reservation[0].Book.Title)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Call Number / Subject: </span>@Html.DisplayFor(b => b.Reservation[0].Book.Subject.CallNo) - @Html.DisplayFor(b => b.Reservation[0].Book.Subject.Subject)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Authors: </span>
+                    @foreach(var author in Model.Reservation[0].Book.BooksAuthors.Where(b=>b.Deleted == false).ToList())
+                    {
+                        @Html.Raw(author.Author.LastName+", "+ author.Author.FirstName +" "+author.Author.MiddleInitial+". ,")
+                    }
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Deadline: </span>@Html.TextBoxFor(b=>b.GiveBook.Deadline, "{0:d}", new { @id = "deadline", @placeholder = "mm/dd/yyyy", @required = "required", @data_uk_datepicker=Html.Raw("{format: 'MM/DD/YYYY', minDate:'"+today.ToShortDateString()+ "', maxDate:'"+ today.AddDays(5).ToShortDateString() + "'}") })
+                </div>
+            </fieldset>
+            <br />
+            <div class="uk-form-row">
+                <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+            </div>
+        </form>
+    </div>
+}

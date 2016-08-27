@@ -1,0 +1,27 @@
+﻿@model library_prototype.Models.MultipleModel.BorrowReturnDashBoardVM
+
+<div id="borrowed-reservations-pie-chart" style="height:300px;width:300px">
+</div>
+<script>
+    var chart = AmCharts.makeChart("borrowed-reservations-pie-chart", {
+        "type": "pie",
+        "theme": "light",
+        "dataProvider": [{
+            "title": "Borrowed",
+            "value":  "@Html.Raw(Model.BookLogs.Count)"
+        }, {
+            "title": "Reservations",
+            "value": "@Html.Raw(Model.Reservations.Count)"
+        }],
+        "titleField": "title",
+        "valueField": "value",
+        "labelRadius": 5,
+
+        "radius": "42%",
+        "innerRadius": "55%",
+        "labelText": "[[title]]",
+        "export": {
+            "enabled": true
+        },
+    });
+</script>

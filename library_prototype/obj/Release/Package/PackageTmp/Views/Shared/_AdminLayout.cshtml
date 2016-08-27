@@ -1,0 +1,26 @@
+﻿@using System.Web.Optimization;
+@{
+    ViewBag.Title = "_AdminLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Scripts/components/search.min.js")
+<div class="uk-container uk-container-center uk-margin-top">
+    <div class="uk-grid uk-grid-collapse uk-grid-divider">
+        <div class="uk-width-medium-2-10 uk-hidden-small">
+            <div class="uk-sticky-placeholder">
+                <div class="uk-panel uk-sticky-init uk-margin-top" data-uk-sticky="{top:57, media: 0}">
+                    <h3 class="uk-panel-title">Navigation Panel</h3>
+                    <ul class="uk-nav uk-nav-side">
+                        <li>@Html.ActionLink("Borrow & Return", "BorrowAndReturn", "Admin")</li>
+                        <li>@Html.ActionLink("Manage Users", "GradesIndex", "Admin")</li>
+                        <li>@Html.ActionLink("Manage Books", "LibraryIndex", "Admin")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-8-10">
+            @RenderBody()
+
+        </div>
+    </div>
+</div>

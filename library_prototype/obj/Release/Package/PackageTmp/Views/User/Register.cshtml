@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <script src="~/Scripts/components/datepicker.min.js"></script>
+    <script src="~/Scripts/components/form-select.min.js"></script>
+    <link href="~/Content/components/form-select.almost-flat.min.css" rel="stylesheet" />
+    <link href="~/Content/components/datepicker.almost-flat.min.css" rel="stylesheet" />
+<div>
+    <div class="uk-container uk-container-center uk-width-1-2">
+        <form class="uk-form uk-form-horizontal">
+            <fieldset data-uk-margin>
+                <legend>Account Registration</legend>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ifn">First Name:</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-ifn" placeholder="first name" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-imn">Middle Name:</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-imn" placeholder="middle name" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-isn">Surname:</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-isn" placeholder="surname" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-isy">Year:</label>
+                    <div class="uk-form-controls">
+                        <select id="form-h-isy">
+                            <option value="">Grade 1</option>
+                            <option value="">Grade 2</option>
+                            <option value="">Grade 3</option>
+                            <option value="">Year 1</option>
+                            <option value="">Year 2</option>
+                            <option value="">Year 3</option>
+                        </select>
+                    </div>
+                    <label class="uk-form-label" for="form-h-issec">Section:</label>
+                    <div class="uk-form-controls">
+                        <select id="form-h-issec">
+                            <option value="">St. Paul</option>
+                            <option value="">St. Catherine</option>
+                            <option value="">St. Blaise</option>
+                            <option value="">St. Augustine</option>
+                            <option value="">St. Monica</option>
+                            <option value="">St. Thomas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-isgen">Gender:</label>
+                    <div class="uk-form-controls">
+                        <select id="form-h-isgen">
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <br />
+            <div class="uk-form-row">
+                <a class="uk-width-1-5 uk-align-right uk-button uk-button-primary" href="#">Submit</a>
+            </div>
+        </form>
+    </div>
+</div>

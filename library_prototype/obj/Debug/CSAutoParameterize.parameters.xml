@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="LibraryDbContext-Web.config Connection String" description="LibraryDbContext Connection String used in web.config by the application to access the database." defaultValue="LibraryDbContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rodner\\Desktop\\library_prototype\\library_prototype\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LibraryDbContext']/@connectionString" />
+  </parameter>
+</parameters>

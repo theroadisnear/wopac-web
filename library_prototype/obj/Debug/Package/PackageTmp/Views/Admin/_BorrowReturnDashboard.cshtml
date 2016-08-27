@@ -1,0 +1,27 @@
+﻿@model library_prototype.Models.MultipleModel.BorrowReturnDashBoardVM
+<script src="~/amcharts/amcharts.js"></script>
+<script src="~/amcharts/themes/light.js"></script>
+<script src="~/amcharts/pie.js"></script>
+<script src="~/amcharts/plugins/responsive/responsive.min.js"></script>
+<script src="~/amcharts/serial.js"></script>
+<div>
+    <h2 class="uk-text-bold">Dashboard</h2>
+    <div class="uk-grid">
+        <div class="uk-width-medium-1-1">
+            <div class="uk-grid">
+                <div class="uk-width-medium-1-3">
+                    <h3 class="uk-margin-bottom-remove">Borrow Reservation Pie Chart</h3>
+                    <div id="chart-bro" class="">
+                        @Html.Partial("_ChartBRPercentage")
+                    </div>
+                </div>
+                <div class="uk-width-medium-2-3">
+                    <h3 class="uk-margin-bottom-remove">Reservations for last 7 days</h3>
+                    <div id="chart-column" class="">
+                        @Html.Partial("_ReportsSubjectColumn")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

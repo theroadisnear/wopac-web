@@ -1,0 +1,22 @@
+﻿@using System.Web.Optimization;
+@model library_prototype.Models.FormManagementModel.FormModel
+@{
+    ViewBag.Title = "EditForms";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    @using (Html.BeginForm("CreateSection", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal" }))
+    {
+        <fieldset data-uk-margin>
+            <legend>Account Registration</legend>
+            @Html.ValidationSummary(true)
+            <div class="uk-form-row">
+                @Html.LabelFor(u => u.Grade, new { @for = "valueSection", @class = "uk-form-label" })
+                <div class="uk-form-controls">
+                    @Html.TextBoxFor(u => u.Grade, new { @placeholder = "section", @id = "valueSection" })
+                    @Html.ValidationMessageFor(u => u.Grade, null, new { @class = "uk-form-danger" })
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>

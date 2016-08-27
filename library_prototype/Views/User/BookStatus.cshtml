@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "BookStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/components/search.min.js"></script>
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-medium-1-4 ">
+        <div class="uk-sticky-placeholder uk-margin">
+            <div class="uk-panel uk-panel-box uk-sticky-init uk-active" data-uk-sticky="{top:15, media: 780}">
+                <form class="uk-search" data-uk-search>
+                    <input class="uk-search-field" type="search" placeholder="search..." />
+                </form>
+                <div class="uk-grid-divider">
+
+                </div>
+                <ul class="uk-nav uk-nav-side">
+                    <li>@Html.ActionLink("Admin", "AdminIndex", "User")</li>
+                    <li>@Html.ActionLink("Reservation", "Reservation", "User")</li>
+                    <li>@Html.ActionLink("Book Status", "BookStatus", "User")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+

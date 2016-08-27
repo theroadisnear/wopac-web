@@ -1,0 +1,98 @@
+﻿@using System.Web.Optimization;
+@using SimpleCrypto;
+@model library_prototype.Models.MultipleModel.UserIndexVM
+@{
+    ViewBag.Title = "UserIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var userRegistration = TempData["UserRegistration"] as library_prototype.Models.MultipleModel.UserIndexVM;
+}
+@Scripts.Render("~/Scripts/components/grid.js")
+@if (Model.Error == true)
+{
+    foreach (var error in Model.Message)
+    {
+        <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(modelItem => error)', { status: 'warning', timeout: 0, pos: 'bottom-right' });
+            });
+        </script>
+    }
+}
+else if (Model.Error == false)
+{
+    <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(m=>m.Message[0])', { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            });
+    </script>
+}
+<div class="uk-margin-remove uk-align-center">
+    <h1 class="">
+        <span class="uk-vertical-align-middle">@Html.ActionLink(" ", "SectionIndex", "Admin", new { id = Model.GroupID }, new { @class = "uk-slidenav uk-slidenav-previous" })</span>
+        @Html.DisplayFor(s => s.SectionName)
+    </h1>
+    <ul class="uk-subnav uk-subnav-pill uk-margin-large-left">
+        <li class="uk-active">
+            <a class="" data-uk-modal="{target:'#create-user'}"><i class="uk-icon-plus-square"></i> Create</a>
+        </li>
+    </ul>
+</div>
+<div class="uk-margin-large-left">
+    <div class="uk-grid-small" data-uk-grid="{controls:'#sort1'}" id="userList">
+        @Html.Partial("_UserList")
+    </div>
+</div>
+<div id="create-user" class="uk-modal">
+    @using (Ajax.BeginForm("CreateUser", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId= "userList", LoadingElementId="load", OnSuccess="Message()"}, new { @class = "uk-form uk-form-horizontal", @id="createForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <fieldset data-uk-margin>
+                <legend>Account Registration <i class="uk-icon-spinner uk-icon-spin" id="load" style="display:none"></i></legend>
+                @Html.HiddenFor(u => u.SectionID)
+                <div class="uk-form-row">
+                    @Html.LabelFor(u => u.Register.FirstName, new { @for = "firstName", @class = "uk-form-label" })
+                    <div class="uk-form-controls">
+                        @Html.TextBoxFor(u => u.Register.FirstName, new { @placeholder = "first name", @id = "firstName", @required = "required" })
+                        @Html.ValidationMessageFor(u => u.Register.FirstName, null, new { @class = "uk-form-danger" })
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    @Html.LabelFor(u => u.Register.MiddleInitial, new { @for = "middleInitial", @class = "uk-form-label" })
+                    <div class="uk-form-controls">
+                        @Html.TextBoxFor(u => u.Register.MiddleInitial, new { @placeholder = "middle initial", @id = "middleInitial", @required = "required" })
+                        @Html.ValidationMessageFor(u => u.Register.MiddleInitial, null, new { @class = "uk-form-danger" })
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    @Html.LabelFor(u => u.Register.LastName, new { @for = "lastName", @class = "uk-form-label" })
+                    <div class="uk-form-controls">
+                        @Html.TextBoxFor(u => u.Register.LastName, new { @placeholder = "last name", @id = "lastName", @required = "required" })
+                        @Html.ValidationMessageFor(u => u.Register.LastName, null, new { @class = "uk-form-danger" })
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    @Html.LabelFor(u => u.Register.Gender, new { @for = "gender", @class = "uk-form-label" })
+                    <div class="uk-form-controls">
+                        @Html.DropDownListFor(u => u.Register.Gender, new List<SelectListItem>()
+                   {
+                       new SelectListItem { Value = "male", Text = "Male"},
+                       new SelectListItem { Value = "female", Text = "Female"}
+                   })
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    @Html.LabelFor(u => u.Register.EmailAddress, new { @for = "emailAddress", @class = "uk-form-label" })
+                    <div class="uk-form-controls">
+                        @Html.TextBoxFor(u => u.Register.EmailAddress, new { @placeholder = "email address", @id = "emailAddress", @required = "required", @type = "email" })
+                        @Html.ValidationMessageFor(u => u.Register.EmailAddress, null, new { @class = "uk-form-danger" })
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <button type="submit" class="uk-width-1-5 uk-align-right uk-button uk-button-primary" >Submit</button>
+                </div>
+            </fieldset>
+        </div>
+    }
+</div>

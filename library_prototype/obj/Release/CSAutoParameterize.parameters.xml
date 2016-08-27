@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="library_prototype.DAL.LibraryDbContext-Web.config Connection String" description="library_prototype.DAL.LibraryDbContext Connection String used in web.config by the application to access the database." defaultValue="library_prototype.DAL.LibraryDbContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rodner\\Desktop\\library_prototype\\library_prototype\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='library_prototype.DAL.LibraryDbContext']/@connectionString" />
+  </parameter>
+</parameters>

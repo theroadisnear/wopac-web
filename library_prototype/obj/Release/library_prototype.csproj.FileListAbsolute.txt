@@ -1,0 +1,327 @@
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\library_prototype.dll.config
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\library_prototype.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\library_prototype.pdb
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Antlr3.Runtime.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\dotless.Core.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\EntityFramework.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\EntityFramework.SqlServer.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Newtonsoft.Json.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Owin.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Helpers.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Mvc.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Razor.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\WebGrease.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Antlr3.Runtime.pdb
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\EntityFramework.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\EntityFramework.SqlServer.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\Newtonsoft.Json.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.pdb
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Helpers.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Mvc.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Razor.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\obj\Release\library_prototype.csprojResolveAssemblyReference.cache
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\obj\Release\library_prototype.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\obj\Release\library_prototype.pdb
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Net.Http.Formatting.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Http.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Http.WebHost.dll
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Net.Http.Formatting.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Http.xml
+C:\Users\rodner\documents\visual studio 2013\Projects\library_prototype\library_prototype\bin\System.Web.Http.WebHost.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\library_prototype.dll.config
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\library_prototype.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\library_prototype.pdb
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Antlr3.Runtime.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\dotless.Core.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\EntityFramework.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\EntityFramework.SqlServer.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Newtonsoft.Json.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Owin.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\SimpleCrypto.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Net.Http.Formatting.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Helpers.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Http.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Http.WebHost.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Mvc.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Razor.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\WebGrease.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Antlr3.Runtime.pdb
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.pdb
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\EntityFramework.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\EntityFramework.SqlServer.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\Newtonsoft.Json.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Net.Http.Formatting.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Helpers.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Http.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Http.WebHost.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Mvc.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.pdb
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Optimization.Less.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.Razor.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.xml
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\obj\Release\library_prototype.csprojResolveAssemblyReference.cache
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\obj\Release\library_prototype.Migrations.LibraryDbContext.resources
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\obj\Release\library_prototype.csproj.GenerateResource.Cache
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\obj\Release\library_prototype.dll
+C:\Users\rodner\Documents\Visual Studio 2015\Projects\library_prototype\library_prototype\obj\Release\library_prototype.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\library_prototype.dll.config
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\library_prototype.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\library_prototype.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Antlr3.Runtime.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\dotless.Core.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\EntityFramework.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\EntityFramework.SqlServer.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Security.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Newtonsoft.Json.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Owin.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\SimpleCrypto.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Extensions.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Formatting.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Primitives.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Helpers.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.Owin.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.WebHost.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Mvc.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Optimization.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Optimization.Less.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Razor.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\WebGrease.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Antlr3.Runtime.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\ApplicationVersionHtmlHelper.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Bytescout.BarCodeReader.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\dotless.Core.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\EntityFramework.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\EntityFramework.SqlServer.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Security.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Newtonsoft.Json.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Extensions.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Formatting.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Net.Http.Primitives.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Helpers.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.Owin.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Http.WebHost.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Mvc.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Optimization.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Optimization.Less.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Optimization.Less.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.Razor.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.Deployment.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\System.Web.WebPages.Razor.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.csproj.App.config
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.csprojResolveAssemblyReference.cache
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.pdb
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\SerializeEncrypt.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\BeginCollectionItem.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\SendGrid.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\SendGrid.SmtpApi.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\bin\SendGridMail.dll
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.Migrations.LibraryDbContext.resources
+C:\Users\rodner\Desktop\library_prototype\library_prototype\obj\Release\library_prototype.csproj.GenerateResource.Cache
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.dll.config
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.pdb
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Antlr3.Runtime.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\BeginCollectionItem.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Bytescout.BarCodeReader.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\dotless.Core.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.SqlServer.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Newtonsoft.Json.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Owin.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGrid.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGrid.SmtpApi.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGridMail.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SerializeEncrypt.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SimpleCrypto.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Extensions.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Formatting.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Primitives.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Helpers.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.Owin.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.WebHost.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Mvc.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Razor.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Deployment.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Razor.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\WebGrease.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Antlr3.Runtime.pdb
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.pdb
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Bytescout.BarCodeReader.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\dotless.Core.pdb
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.SqlServer.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Newtonsoft.Json.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Extensions.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Formatting.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Primitives.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Helpers.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.Owin.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.WebHost.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Mvc.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.pdb
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Razor.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Deployment.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Razor.xml
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csproj.App.config
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csprojResolveAssemblyReference.cache
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.Migrations.LibraryDbContext.resources
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csproj.GenerateResource.Cache
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.dll
+C:\Users\rodner\Desktop\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.dll.config
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\library_prototype.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Antlr3.Runtime.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\BeginCollectionItem.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Bytescout.BarCodeReader.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\dotless.Core.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.SqlServer.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Web.Infrastructure.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Newtonsoft.Json.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Owin.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGrid.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGrid.SmtpApi.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SendGridMail.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SerializeEncrypt.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\SimpleCrypto.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Extensions.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Formatting.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Primitives.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Helpers.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.Owin.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.WebHost.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Mvc.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Razor.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Deployment.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Razor.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\WebGrease.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Antlr3.Runtime.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\ApplicationVersionHtmlHelper.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Bytescout.BarCodeReader.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\dotless.Core.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\EntityFramework.SqlServer.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\Newtonsoft.Json.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Extensions.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Formatting.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Net.Http.Primitives.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Helpers.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.Owin.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Http.WebHost.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Mvc.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.pdb
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Optimization.Less.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.Razor.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Deployment.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\bin\System.Web.WebPages.Razor.xml
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csproj.App.config
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csprojResolveAssemblyReference.cache
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.Migrations.LibraryDbContext.resources
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.csproj.GenerateResource.Cache
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.dll
+D:\Programs\(Website) Web and Android Application for Public Access Catalog System for Santo Tomas de Villanueva Parochial School\library_prototype\obj\Release\library_prototype.pdb

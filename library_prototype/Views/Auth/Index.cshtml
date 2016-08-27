@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-medium-1-5 ">
+        <div class="uk-sticky-placeholder uk-margin">
+            <div class="uk-panel uk-panel-box uk-sticky-init uk-active" data-uk-sticky="{top:15, media: 780}">
+                <ul class="uk-nav uk-nav-side" data-uk-scrollspy-nav="{closest:'li', smoothscroll:true}">
+                    <li class="uk-active">
+                        <a href="#welcome">Welcome</a>
+                    </li>
+                    <li>
+                        <a href="#history"><span class="uk-icon-history"></span> History</a>
+                    </li>
+                    <li>
+                        <a href="#missionvision">Mission Vision</a>
+                    </li>
+                    <li>
+                        <a href="#opac">OPAC</a>
+                    </li>
+                    <li>
+                        <a href="#contactus"><span class="uk-icon-phone"></span> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-4-5">
+        <div class="uk-margin-large-bottom">
+            <h2 id="welcome">Welcome</h2>
+            <p>
+                Welcome to our website.
+            </p>
+        </div>
+        <div class="uk-margin-large-bottom">
+            <h2 id="history">History</h2>
+            <p>
+                The existence of the Sto. Tomas de Villanueva Parochial School (formerly Sto. Tomas de Villanueva High School)
+                was made possible through the effort of a Belgian priest; Fr. Alejandro Vermorel who laid out a plan to have
+                a secondary school to cater to the educational needs of the elementary graduates of the then thinly populated
+                community. His wish paid off when a generous Santoleño, Fr. Lupo Dumandan, donated 2200 sq. meters of land
+                where the school now stands.
+            </p>
+        </div>
+        <div class="uk-margin-large-bottom">
+            <h2 id="missionvision">Mission and Vision</h2>
+            <p>
+                Sto. Tomas de Villanueva Parochial School Library aspires to be an instrument for man’s integral formation by
+                developing the fundamental skills and attitudes centered on St. Tomas of Villanueva’s preferential option
+                for the poor through experiential approaches and learning experiences toward academic excellence, technical
+                competency, patriotism and social responsibility thus producing individuals who can be contributors in the
+                evangelization and in the transformation of the local Church and of the society.
+            </p>
+        </div>
+        <div class="uk-margin-large-bottom">
+            <h2 id="opac">Online Public Access Catalog</h2>
+            <p>
+                OPAC, or sometimes known as the library catalog, is an online database managed by a single or
+                a group of libraries. OPACs existed as early as the 1960s, and the first large-scale OPAC was
+                developed at Ohio University at 1975, followed by the Dallas Public Library at 1978. It intended
+                to replace the card catalogs by using a dedicated telnet client. Throughout the 1980s, online
+                catalogs grew and improved with their search mechanisms, including Boolean and keyword searching.
+                However, during the 1990s, development of online catalogs became stagnant. Search technology did
+                not advance as much as 1980s. Web search engines became increasingly popular due to their simpler
+                yet more powerful search system that provides relevance ranked results using probabilistic and
+                vector based queries. Due to their widespread popularity, library users have grown increasingly
+                dissatisfied with the online catalog’s search system.
+            </p>
+        </div>
+        <div class="uk-margin-large-bottom">
+            <h2 id="contactus">Contact Us</h2>
+            <address>
+                Sto. Tomas de Villanueva Parochial School Library<br />
+                Evangelista St. Santolan Pasig City<br />
+                <abbr title="Tel:">Tel:</abbr>
+                646-1029<br />
+                <abbr title="Fax:">Fax:</abbr>
+                646-5827
+            </address>
+            <address>
+                <a href="stvps@stvpasig.org">stvps@stvpasig.org</a>
+            </address>
+        </div>
+    </div>
+</div>

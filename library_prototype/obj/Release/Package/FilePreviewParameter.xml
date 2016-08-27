@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="thelibraryisnear" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\rodner\\Desktop\\library_prototype\\library_prototype\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\rodner\\Desktop\\library_prototype\\library_prototype\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="library_prototype.DAL.LibraryDbContext-Web.config Connection String" description="" value="Data Source=tcp:iqs9n7wye7.database.windows.net,1433;Initial Catalog=LibraryDbContext;User ID=theroadisnear@iqs9n7wye7.database.windows.net;Password=mi5-2500kHD7850" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rodner\\Desktop\\library_prototype\\library_prototype\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='library_prototype.DAL.LibraryDbContext']/@connectionString" />
+  </parameter>
+</parameters>

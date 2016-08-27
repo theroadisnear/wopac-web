@@ -1,0 +1,55 @@
+﻿@model library_prototype.Models.MultipleModel.ReturnTabVM
+
+@using (Ajax.BeginForm("ReturnBook", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "borrow-return", LoadingElementId = "return-book-load", OnSuccess = "RTMessage()" }, new { @class = "uk-form uk-form-horizontal", @id = "give-book-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(r=>r.ReturnBook.BookLogId, new { @Value = Model.BookLogs[0].Id })
+    <div class="uk-modal-dialog uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+            <h2 class="uk-text-primary">
+                 Return Book
+                <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="return-book-load"></i>
+            </h2>
+        </div>
+        <form class="uk-form uk-form-horizontal">
+            <fieldset data-uk-margin>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Borrower's Name: </span>@Html.DisplayFor(b => b.BookLogs[0].User.Student.FirstName) @Html.DisplayFor(b => b.BookLogs[0].User.Student.MiddleInitial). @Html.DisplayFor(b => b.BookLogs[0].User.Student.LastName) @Html.Raw("(" + Model.BookLogs[0].User.Email + ")")
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Year&Section: </span>@Html.DisplayFor(b => b.BookLogs[0].User.Student.Section.Grade.Grade) - @Html.DisplayFor(b => b.BookLogs[0].User.Student.Section.Section)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">ISBN: </span>@Html.DisplayFor(b => b.BookLogs[0].Book.ISBN)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Title:</span> @Html.DisplayFor(b => b.BookLogs[0].Book.Title)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Call Number / Subject: </span>@Html.DisplayFor(b => b.BookLogs[0].Book.Subject.CallNo) - @Html.DisplayFor(b => b.BookLogs[0].Book.Subject.Subject)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Authors: </span>
+                    @foreach (var author in Model.BookLogs[0].Book.BooksAuthors.Where(b => b.Deleted == false).ToList())
+                    {
+                        @Html.Raw(author.Author.LastName + ", " + author.Author.FirstName + " " + author.Author.MiddleInitial + ". ,")
+                    }
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Deadline: </span>@Html.Raw(Model.BookLogs[0].Deadline.AddHours(8))
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Book Status: </span> @Html.CheckBoxFor(b => b.ReturnBook.BookStatus)
+                </div>
+                <div class="uk-form-row">
+                    <span class="uk-text-bold">Note: </span> @Html.TextAreaFor(b => b.ReturnBook.MessageLog, new { @placeholder = "note", @required = "required" })
+                </div>
+            </fieldset>
+            <br />
+            <div class="uk-form-row">
+                <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+            </div>
+        </form>
+    </div>
+}

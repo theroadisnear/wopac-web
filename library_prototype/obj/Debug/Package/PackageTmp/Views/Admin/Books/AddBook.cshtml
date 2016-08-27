@@ -1,0 +1,110 @@
+﻿@using System.Web.Optimization;
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@Scripts.Render("~/Scripts/components/datepicker.min.js")
+@Scripts.Render("~/Scripts/components/form-select.min.js")
+@Scripts.Render("~/Scripts/components/upload.min.js")
+@Styles.Render("~/Content/components/form-select.almost-flat.min.css")
+@Styles.Render("~/Content/components/datepicker.almost-flat.min.css")
+<div>
+    <div class="uk-container uk-container-center uk-width-1-2">
+        <form class="uk-form uk-form-horizontal">
+            <fieldset data-uk-margin>
+                <legend>Add Book</legend>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-idr">Date Received:</label>
+                    <div class="uk-form uk-form-controls">
+                        <input type="text" data-uk-datepicker="{format: 'MM.DD.YYYY'}" id="form-h-idr" placeholder="mm.dd.yyyy">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-iafn">Author First Name</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-iafn" placeholder="first name" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-iasur">Author Surname</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-iasur" placeholder="surname" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-itit">Title</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-itit" placeholder="title" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-icnum">Call Number</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-icnum" placeholder="call no." />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ivol">Volume</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-ivol" placeholder="volume" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipag">Page</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-ipag" placeholder="page" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-isou">Sources</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-isou" placeholder="sources" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-icos">Cost</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-icos" placeholder="150.00" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ipub">Publisher</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-ipub" placeholder="publisher" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-iisbnn">ISBN Number</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-iisbnn" placeholder="isbn number" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-icri">Copyright</label>
+                    <div class="uk-form-controls">
+                        <input type="text" id="form-h-icri" placeholder="copyright" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-iima">Image</label>
+                    <div class="uk-form-controls">
+                        <input type="file" id="form-h-iima" />
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="form-h-ia">Synopsis</label>
+                    <div class="uk-form-controls">
+                        <textarea id="form-h-ia" cols="50" rows="5" placeholder="synopsis"></textarea>
+                    </div>
+                </div>
+
+                <div class="uk-form-row uk-margin-top">
+                    <a class="uk-width-1-5 uk-align-center uk-button uk-button-primary" href="#">Submit</a>
+                </div>
+            </fieldset>
+            <br />
+            
+        </form>
+    </div>
+</div>
+

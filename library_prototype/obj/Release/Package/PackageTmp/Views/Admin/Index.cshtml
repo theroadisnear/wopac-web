@@ -1,0 +1,32 @@
+﻿@using System.Web.Optimization;
+@model IEnumerable<library_prototype.DAL.LibraryDbContext.StudentModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="uk-well">
+    <h2>Accounts List</h2>
+    <table class="uk-table uk-table-hover uk-table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email Address</th>
+                <th>Pin Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.Pincode)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "BorrowAndReturn";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <h1 class="uk-text-bold uk-text-center">
+            Borrows and Returns <i class="uk-icon-spin uk-icon-spinner" style="display:none" id="br-loading"></i>
+        </h1>
+    </div>
+    <div class="uk-width-1-1">
+        <ul class="uk-tab uk-tab-grid" data-uk-tab>
+            <li class="">
+                @Ajax.ActionLink("Dashboard", "BorrowReturnDashboard", "", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "borrow-return", LoadingElementId = "br-loading", InsertionMode = InsertionMode.Replace }, new { @class = "" })
+            </li>
+            <li class="">
+                @Ajax.ActionLink("Borrow", "BorrowTab", "", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "borrow-return", LoadingElementId = "br-loading", InsertionMode = InsertionMode.Replace }, new { @class = "" })
+            </li>
+            <li>
+                @Ajax.ActionLink("Return", "ReturnTab", "", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "borrow-return", LoadingElementId = "br-loading", InsertionMode = InsertionMode.Replace }, new { @class = "" })
+            </li>
+        </ul>
+        <div class="uk-margin-top" id="borrow-return">
+            @Html.Partial("_BorrowReturnDashboard")
+        </div>
+    </div>
+</div>

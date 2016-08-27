@@ -1,0 +1,207 @@
+﻿@model library_prototype.Models.MultipleModel.LibraryIndexVM
+
+@{
+    ViewBag.Title = "LibraryIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/core/switcher.min.js"></script>
+<script src="~/Scripts/components/tooltip.min.js"></script>
+<script src="~/Scripts/components/datepicker.min.js"></script>
+<link href="~/Content/components/datepicker.gradient.min.css" rel="stylesheet" />
+<link href="~/Content/components/tooltip.gradient.min.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Autocomplete for subject
+        function ajaxSubject(release) {
+            var input = $('#bookSubject').val();
+            var json = "";
+            $.ajax({
+            url: "@Url.Action("SubjectAutoComplete", "Admin")",
+            contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+            })
+            .success(function(result)
+            {
+                release(result);
+            })
+        }   
+        var autocomplete = $.UIkit.autocomplete($('#autocompleteSubject'), {
+            'source': ajaxSubject,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.Subject}}" data-valueCallNo="{{$item.CallNo}}""><a>{{$item.CallNo}}<div>{{$item.Subject}}</div></a></li>{{/items}}</ul>'
+        });
+        $('#bookSubject').change(function ()
+        {
+            $('#callNumber').val(autocomplete.selected.data().valuecallno)
+        });
+
+        //Call Number
+        function ajaxCallNumber(release) {
+            var input = $('#callNumber').val();
+            $.ajax({
+                url: "@Url.Action("CallNumberAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+            })
+            .success(function(result)
+            {
+                $('#bookSubject').val(result.Subject);
+            })
+        }
+        $('#callNumber').change(function ()
+        {
+            ajaxCallNumber();
+        });
+
+        //Autocomplete for publisher
+        function ajaxPublisher(release) {
+            var input = $('#publisherName').val();
+            var json = "";
+            $.ajax({
+                url: "@Url.Action("PublisherAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input }
+        })
+        .success(function(result)
+        {
+            release(result);
+        })
+    }   
+        var autocompletepublisher = $.UIkit.autocomplete($('#autoCompletePublisher'), {
+            'source': ajaxPublisher,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.PublisherName}}"><a>{{$item.PublisherName}}</a></li>{{/items}}</ul>'
+        });
+
+        //Autocomplete for author
+        function ajaxAuthor(release) {
+            var input = $('#authorLastName').val();
+            var input2 = $('#authorFirstName').val();
+            $.ajax({
+                url: "@Url.Action("AuthorAutoComplete", "Admin")",
+                contentType: "application/json; charset=utf-8",
+            type: "GET",
+            dataType: "json",
+            data: { term: input, term1: input2 }
+        })
+        .success(function(result)
+        {
+            release(result);
+            console.log(result);
+        })
+    }   
+        var autocompleteAuthor = $.UIkit.autocomplete($('#autocompleteAuthor'), {
+            'source': ajaxAuthor,
+            'template': '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.LastName}}" data-valueFirstName="{{$item.FirstName}}" data-valueMiddleInitial="{{$item.MiddleInitial}}"><a>{{$item.LastName}}, {{$item.FirstName}} {{$item.MiddleInitial}}</a></li>{{/items}}</ul>'
+    });
+    $('#authorLastName').change(function ()
+    {
+        $('#authorMiddleInitial').val(autocompleteAuthor.selected.data().valuemiddleinitial);
+        $('#authorFirstName').val(autocompleteAuthor.selected.data().valuefirstname);
+    });
+        //add author create
+    $('#addNewAuthor').click(function () {
+        $.ajax({
+            url: "@Url.Action("AddAuthor", "Admin")",
+            success: function (data) {
+                $("#formAuthorList").append(data);
+            }
+    });
+
+    });
+ });
+</script>
+@if (Model.Error == true)
+{
+    foreach (var error in Model.Message)
+    {
+        <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(modelItem => error)', { status: 'warning', timeout: 0, pos: 'bottom-right' });
+            });
+        </script>
+    }
+}
+else if (Model.Error == false)
+{
+    <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(m=>m.Message[0])', { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            });
+    </script>
+}
+<div class="uk-margin-small">
+    <h2 class="">Santo Tomas de Villanueva Parochial School</h2>
+    <div class="uk-margin-left">
+        @if (Model.DbBooks.Count == 0)
+        {
+            <h2 class="uk-text-warning">There is no existing group</h2>
+        }
+        else
+        {
+            <div class="" id="booksTable">
+                @Html.Partial("_LibraryIndexBooksList")
+            </div>
+        }
+
+    </div>
+</div>
+<div id="create-book" class="uk-modal">
+    @using (Ajax.BeginForm("CreateBook", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "booksTable", LoadingElementId = "load", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id = "createBookForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog uk-modal-dialog-large">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                <h2 class="uk-text-primary">
+                    Add New Book
+                    <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="load"></i>
+                </h2>
+            </div>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend class="uk-text-bold uk-margin-left">Book's Information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(b => b.CreateBook.ISBN, new { @placeholder = "isbn", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookISBN", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "ISBN" })
+                        @Html.TextBoxFor(b => b.CreateBook.BookTitle, new { @placeholder = "title", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookTitle", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Title" })
+                        @Html.TextBoxFor(b => b.CreateBook.Volume, new { @id = "volumeNumber", @placeholder = "volume no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1", @max = "100", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Vollume Number" })
+                        @Html.TextBoxFor(b => b.CreateBook.CallNumber, new { @id = "callNumber", @placeholder = "call no.", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "0", @max = "999", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Call Number" })
+                        <div class="uk-autocomplete uk-form" id="autocompleteSubject">
+                            @Html.TextBoxFor(b => b.CreateBook.Subject, new { @placeholder = "subject", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "bookSubject", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Subject" })
+                        </div>
+                        @Html.TextBoxFor(b => b.CreateBook.CopyRight, new { @id = "bookCopyright", @placeholder = "year", @required = "required", @class = "uk-margin-small-left uk-margin-small-bottom", @type = "number", @min = "1800", @max = "2050", @step = "1", @data_uk_tooltip = "pos:'top'", @title = "Copyright" })
+                        <div class="uk-autocomplete uk-form" id="autoCompletePublisher">
+                            @Html.TextBoxFor(b => b.CreateBook.PublisherName, new { @placeholder = "publisher name", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "publisherName", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Publisher Name" })
+                        </div>
+                    </div>
+                    <legend class="uk-text-bold uk-margin-left">
+                        Author's Information
+                        <a id="addNewAuthor" class="uk-icon-plus" data-uk-tooltip="pos:'top'" title="Add New Author Row"></a>
+                    </legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom" id="formAuthorList">
+                        @foreach (var item in Model.AddAuthors)
+                        {
+                            Html.RenderPartial("_LibraryIndexCreateAuthors", item);
+                        }
+                    </div>
+                    <legend class="uk-text-bold uk-margin-left">Other information</legend>
+                    <div class="uk-form-row uk-margin-left uk-margin-small-bottom">
+                        @Html.TextBoxFor(q => q.CreateBook.Quantity, new { @placeholder = "quantity", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "quantity", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Quantity", @step = "1" })
+                        @Html.TextBoxFor(b => b.CreateBook.Price, new { @placeholder = "price", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "price", @required = "required", @type = "number", @data_uk_tooltip = "pos:'top'", @title = "Price", @step = "0.01" })
+                        @Html.CheckBoxFor(b => b.CreateBook.Borrow, new { @class = "uk-margin-small-left uk-margin-small-bottom", @id = "borrowable", @data_uk_tooltip = "pos:'top'", @title = "Borrowable" })
+                        @Html.LabelFor(b => b.CreateBook.Borrow, new { @for = "borrowable" })
+                        @Html.TextAreaFor(b => b.CreateBook.Synopsis, new { @placeholder = "synopsis", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "synopsis", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Synopsis" })
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>

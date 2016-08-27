@@ -1,0 +1,155 @@
+﻿@using System.Web.Optimization;
+@using library_prototype.DAL;
+@model library_prototype.Models.MultipleModel.CreateSectionVM
+@{
+    ViewBag.Title = "SectionIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (Model.Error == true)
+{
+    foreach (var error in Model.Message)
+    {
+        <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(modelItem => error)', { status: 'warning', timeout: 0, pos: 'bottom-right' });
+            });
+        </script>
+    }
+}
+else if (Model.Error == false)
+{
+    <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(m=>m.Message[0])', { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            });
+    </script>
+}
+<div class="uk-margin-small">
+    <h1 class="">
+        <span class="uk-vertical-align-middle">@Html.ActionLink(" ","GradesIndex", "Admin", new { @class= "uk-slidenav uk-slidenav-previous" })</span>
+        @Html.DisplayFor(g=>g.SectionName)
+    </h1>
+    <ul class="uk-subnav uk-subnav-pill uk-margin-large-left">
+        <li class="">
+            <a class="uk-button-primary" data-uk-modal="{target:'#create-section'}"><i class="uk-icon-plus-square"></i> Section</a>
+        </li>
+        <li class="">
+            <a class="uk-button-danger" data-uk-modal="{target:'#delete-section'}"><i class="uk-icon-minus-square"></i> Delete</a>
+        </li>
+    </ul>
+    <div class="uk-margin-left">
+        @if ((Model.Sections.Count == 0))
+        {
+            <h2 class="uk-text-warning">There is no existing section</h2>
+        }
+        else if (Model.Sections.Any())
+        {
+            <ul class="uk-thumbnav">
+                @foreach (var item in Model.Sections)
+                {
+                    <li class="uk-animation-scale">
+                        <figure class="uk-overlay uk-animation-hover uk-animation-scale">
+                            @if (item.ImageId == null)
+                            {
+                                <img class="" width="200" height="120" src="@Url.Content("~/Image/default/group.png")" />
+                            }
+                            else
+                            {
+                                <img class="" width="200" height="120" src="@Url.Content(item.Image.Path)" />
+                            }
+                            <figcaption class="uk-overlay-panel uk-overlay-background">
+                                <h4 class="">
+                                    @Html.ActionLink(item.Section, "UserIndex", new { id = item.Id }, new { @class = "", @style = "text-decoration:none;color:#ffffff;" })
+                                    <span>
+                                        <button class="uk-button uk-button-mini uk-button-success uk-icon-refresh" data-uk-modal="{target:'@Html.Raw("#update-"+item.Id)'}" data-uk-tooltip title="Update"></button>
+                                        <button class="uk-button uk-button-mini uk-button-danger uk-icon-minus-square" data-uk-modal="{target:'@Html.Raw("#delete-"+item.Id)'}" data-uk-tooltip title="Delete"></button>
+                                    </span>
+                                </h4>
+                            </figcaption>
+                        </figure>
+                    </li>
+                }
+            </ul>
+        }
+
+    </div>
+</div>
+<div id="create-section" class="uk-modal">
+    @using (Html.BeginForm("CreateSection", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend>Create Section</legend>
+                    @Html.HiddenFor(g=>g.GroupID)
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.CreateSection.Section, new { @for = "section", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.CreateSection.Section, new { @placeholder = "section", @id = "section", @required="required" })
+                            @Html.ValidationMessageFor(u => u.CreateSection.Section, null, new { @class = "uk-form-danger" })
+                        </div>
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+@foreach (var item in Model.Sections)
+{
+    <div id="@Html.Raw("update-"+item.Id)" class="uk-modal">
+        @using (Html.BeginForm("UpdateSection", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <form class="uk-form uk-form-horizontal">
+                    <fieldset data-uk-margin>
+                        <legend>Update Section Information</legend>
+                        @Html.HiddenFor(modelItem => Model.GroupID)
+                        @Html.HiddenFor(g => g.UpdateSection.SectionId, new { @Value = item.Id })
+                        <div class="uk-form-row">
+                            @Html.LabelFor(u => u.UpdateSection.SectionName, new { @for = "section", @class = "uk-form-label uk-text-right" })
+                            <div class="uk-form-controls">
+                                @Html.TextBoxFor(u => u.UpdateSection.SectionName, new { @placeholder = "section name", @id = "section", @required = "required", @Value = item.Section })
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="uk-form-row uk-margin-top">
+                        <button class="uk-width-1-5 uk-align-right uk-button uk-button-primary" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+
+    <div id="@Html.Raw("delete-"+item.Id)" class="uk-modal">
+        @using (Html.BeginForm("DeleteSection", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <form class="uk-form uk-form-horizontal">
+                    <fieldset data-uk-margin>
+                        <legend>Delete Confirmation</legend>
+                        @Html.HiddenFor(modelItem => Model.GroupID)
+                        @Html.HiddenFor(d => d.DeleteSection.SectionId, new { @Value = item.Id })
+                        <div class="uk-form-row">
+                            Are you sure to remove @Html.DisplayFor(modelItem => item.Section, new { @class = "uk-text-bold" }) from the list?
+                            <div class="uk-form-controls">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="uk-form-row uk-margin-top">
+                        <button class="uk-width-1-5 uk-align-right uk-button uk-button-primary" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+}

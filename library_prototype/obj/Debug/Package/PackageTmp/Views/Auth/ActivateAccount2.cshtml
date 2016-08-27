@@ -1,0 +1,210 @@
+﻿@using System.Web.Optimization;
+@model library_prototype.Models.MultipleModel.AuthModelVM
+@{
+    ViewBag.Title = "ActivateAccount2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Scripts/components/datepicker.min.js")
+@Scripts.Render("~/Scripts/components/form-select.min.js")
+@Scripts.Render("~/Scripts/core/switcher.js")
+@Scripts.Render("~/Scripts/angular_scripts/password/scripts/app.js")
+@Scripts.Render("~/Scripts/angular_scripts/password/scripts/services/password.js")
+@Scripts.Render("~/Scripts/angular_scripts/password/scripts/controllers/password.js")
+
+@Styles.Render("~/Content/components/form-select.almost-flat.min.css")
+@Styles.Render("~/Content/components/datepicker.almost-flat.min.css")
+@Styles.Render("~/Content/components/progress.min.css")
+
+@if (Model.Error == true)
+{
+    foreach (var error in Model.Message)
+    {
+        <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(modelItem => error)', { status: 'warning', timeout: 0, pos: 'bottom-right' });
+            });
+        </script>
+    }
+}
+else if (Model.Error == false)
+{
+    <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(m=>m.Message[0])', { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            });
+    </script>
+}
+
+<div ng-app="passwordApp" ng-controller="PasswordCtrl">
+    <div class="uk-container uk-container-center uk-width-medium-1-1">
+        <h2 class="uk-text-bold uk-margin-large-top uk-margin-bottom-remove uk-text-center">Account Activation</h2>
+        @using (Html.BeginForm("ActivateAccount2", "Auth", FormMethod.Post, new { @class = "uk-form uk-form-horizontal uk-margin-left", @name="form" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor( u => u.UserModel.Id)
+            <div id="activation1" class="uk-form uk-form-horizontal uk-margin-top-remove uk-margin-bottom">
+                <div class="uk-width-medium-1-1 uk-align-center">
+                    <ul class="uk-subnav uk-subnav-pill uk-margin-large-left" data-uk-switcher="{connect:'#switch-from-content', animation:'uk-animation-fade'}">
+                        <li class="uk-active" aria-expanded="true"><button class="uk-button uk-button-primary uk-button-small">Step 1</button></li>
+                        <li aria-expanded="false" class=""><button class="uk-button uk-button-primary uk-button-small">Step 2</button></li>
+                        <li aria-expanded="false" class=""><button class="uk-button uk-button-primary uk-button-small" ng-disabled="form.$invalid">Step 3</button></li>
+                    </ul>
+                    <ul id="switch-from-content" class="uk-switcher">
+                        <li>
+                            <div class="">
+                                <div class="">
+                                    <div class="uk-panel">
+                                        <h3 class="uk-panel-title uk-margin-left">
+                                            Hi!
+                                            @Html.DisplayFor(u => u.UserModel.Student.FirstName)
+                                            @Html.DisplayFor(u => u.UserModel.Student.MiddleInitial)
+                                            @Html.DisplayFor(u => u.UserModel.Student.LastName)
+                                        </h3>
+                                        <p>
+                                            Thank you for using Online Public Access Catalog System. Kindly Confirm your
+                                            student information below and fill up the necessary account details.
+                                        </p>
+                                        <dl class="uk-description-list-horizontal">
+                                            <dt class="uk-text-right">
+                                                Name:
+                                            </dt>
+                                            <dt class="uk-text-right">
+                                                Gender:
+                                            </dt>
+                                            <dt class="uk-text-right">
+                                                Grade:
+                                            </dt>
+                                            <dt class="uk-text-right">
+                                                Section:
+                                            </dt>
+                                            <dd>
+                                                @Html.DisplayFor(u => u.UserModel.Student.FirstName) @Html.DisplayFor(u => u.UserModel.Student.MiddleInitial) @Html.DisplayFor(u => u.UserModel.Student.LastName)
+                                            </dd>
+                                            <dd>
+                                                @Html.DisplayFor(u => u.UserModel.Student.Gender)
+                                            </dd>
+                                            <dd>
+                                                @Html.DisplayFor(u => u.UserModel.Student.Section.Grade.Grade)
+                                            </dd>
+                                            <dd>
+                                                @Html.DisplayFor(u => u.UserModel.Student.Section.Section)
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-large-top uk-width-medium-1-10 uk-align-center">
+                                    <a class="uk-button uk-button-primary" href="#" data-uk-switcher-item="next">Next</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="">
+                                <div class="uk-width-medium-1-2 uk-align-center">
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.Password, new { @for = "password", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form-controls" ng-class="{ 'has-error' : form.ActivationModel1.Password.$invalid && form.ActivationModel1.Password.$pristine }">
+                                            @Html.PasswordFor(u => u.ActivationModel1.Password, new { @placeholder = "password", @id = "password", @required="required", ng_model="user.password"})
+                                            <div class="uk-align-right uk-width-medium-4-10 uk-progress uk-progress-mini uk-progress-striped uk-active" ng-class="{'uk-progress-success': isPasswordStrong(), 'uk-progress-warning': isPasswordOk(), 'uk-progress-danger': isPasswordWeak()}">
+                                                <div class="uk-progress-bar" aria-valuenow="{{passwordStrength}}" aria-valuemin="0" aria-valuemax="100" style="width: {{passwordStrength}}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.ConfirmPassword, new { @for = "confirmPassword", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form-controls" ng-class="{ 'has-error' : form.ActivationModel1.ConfirmPassword.$invalid || form.ActivationModel1.ConfirmPassword.$pristine }">
+                                            @Html.PasswordFor(u => u.ActivationModel1.ConfirmPassword, new { @placeholder = "confirm password", @id = "confirmPassword", @required = "required", ng_model = "user.confirmPassword" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.SecretQuestion, new { @for = "secretQuestion", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form-controls" ng-class="{ 'has-error' : form.ActivationModel1.SecretQuestion.$invalid && form.ActivationModel1.SecretQuestion.$pristine }">
+                                            @if (Model.ActivationModel1 != null && Model.ActivationModel1.SecretQuestion != null)
+                                            {
+                                                @Html.TextBoxFor(u => u.ActivationModel1.SecretQuestion, new { @placeholder = "secret question", @id = "secretQuestion", @required = "required", ng_model = "user.secretQuestion", ng_init = @Html.Raw("user.secretQuestion='" + Model.ActivationModel1.SecretQuestion + "'") })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(u => u.ActivationModel1.SecretQuestion, new { @placeholder = "secret question", @id = "secretQuestion", @required = "required", ng_model = "user.secretQuestion" })
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.SecretAnswer, new { @for = "secretAnswer", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form-controls" ng-class="{ 'has-error' : form.ActivationModel1.SecretAnswer.$invalid && form.ActivationModel1.SecretAnswer.$pristine }">
+                                            @if (Model.ActivationModel1 != null && Model.ActivationModel1.SecretAnswer != null)
+                                            {
+                                                @Html.TextBoxFor(u => u.ActivationModel1.SecretAnswer, new { @placeholder = "secret answer", @id = "secretAnswer", @required = "required", @ng_model = "user.secretAnswer", ng_init = @Html.Raw("user.secretAnswer='" + Model.ActivationModel1.SecretAnswer + "'") })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(u => u.ActivationModel1.SecretAnswer, new { @placeholder = "secret answer", @id = "secretAnswer", @required = "required", @ng_model = "user.secretAnswer"})
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-large-top uk-width-medium-2-10 uk-align-center">
+                                    <a class="uk-button" href="#" data-uk-switcher-item="0">Back</a>
+                                    <button class="uk-button uk-button-primary" href="#" data-uk-switcher-item="next" ng-disabled="form.$invalid">Next</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="">
+                                <div class="uk-width-medium-1-2 uk-align-center">
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.Birthday, new { @for="birthday", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.Birthday, "{0:d}", new { @id = "birthday", @placeholder="mm/dd/yyyy", @required="required", @data_uk_datepicker = "{format: 'MM/DD/YYYY'}" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.ContactNumber, new { @for = "contactNumber", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.ContactNumber, new { @placeholder = "contact number", @id = "contactNumber", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.Address1, new { @for = "address1", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.Address1, new { @placeholder = "address line 1", @id = "address1", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.Address2, new { @for = "address2", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.Address2, new { @placeholder = "address line 2", @id = "address2", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.City, new { @for = "city", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.City, new { @placeholder = "city", @id = "city", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.ZipCode, new { @for = "zipCode", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.ZipCode, new { @placeholder = "Zip Code", @id = "zipCode", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="uk-form-row">
+                                        @Html.LabelFor(u => u.ActivationModel1.Country, new { @for = "country", @class = "uk-form-label uk-text-right" })
+                                        <div class="uk-form uk-form-controls">
+                                            @Html.TextBoxFor(u => u.ActivationModel1.Country, new { @placeholder = "country", @id = "country", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-large-top uk-width-medium-2-10 uk-align-center">
+                                    <a class="uk-button" href="#" data-uk-switcher-item="1">Back</a>
+                                    <button type="submit" class="uk-button uk-button-primary">Submit</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

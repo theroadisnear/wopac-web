@@ -1,0 +1,146 @@
+﻿@using System.Web.Optimization;
+@using library_prototype.DAL;
+@model library_prototype.Models.MultipleModel.CreateGradeVM
+@{
+    ViewBag.Title = "GradesIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (Model.Error == true)
+{
+    foreach (var error in Model.Message)
+    {
+        <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(modelItem => error)', { status: 'warning', timeout: 0, pos: 'bottom-right' });
+            });
+        </script>
+    }
+}
+else if (Model.Error == false)
+{
+    <script>
+            $(document).ready(function () {
+                UIkit.notify('@Html.DisplayFor(m=>m.Message[0])', { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            });
+    </script>
+}
+<div class="uk-margin-small">
+    <h2 class="">Santo Tomas de Villanueva Parochial School</h2>
+    <ul class="uk-subnav uk-subnav-pill">
+        <li class="">
+            <a class="uk-button-primary" data-uk-modal="{target:'#create-grade'}"><i class="uk-icon-plus-square"></i> Create</a>
+        </li>
+    </ul>
+    <div class="uk-margin-left">
+        @if (!Model.Grades.Any())
+        {
+            <h2 class="uk-text-warning">There is no existing group</h2>
+        }
+        else if (Model.Grades.Any())
+        {
+            <ul class="uk-thumbnav">
+                @foreach (var item in Model.Grades)
+                {
+                    <li class="uk-animation-scale">
+                        <figure class="uk-overlay uk-animation-hover uk-animation-scale">
+                            @if (item.ImageId == null)
+                            {
+                                <img class="" src="@Url.Content("~/Image/default/group.png")" />
+                            }
+                            else
+                            {
+                                <img class="" src="@Url.Content(item.Image.Path)" />
+                            }
+                            <figcaption class="uk-overlay-panel uk-overlay-background">
+                                <h4 class="uk-text-contrast">
+                                    @Html.ActionLink(item.Grade, "SectionIndex", new { id = item.Id }, new { @class = "", @style = "text-decoration:none;color:#ffffff;" })
+                                    <span>
+                                        <button class="uk-button uk-button-mini uk-button-success uk-icon-refresh" data-uk-modal="{target:'@Html.Raw("#update-"+item.Id)'}" data-uk-tooltip title="Update"></button>
+                                        <button class="uk-button uk-button-mini uk-button-danger uk-icon-minus-square" data-uk-modal="{target:'@Html.Raw("#delete-"+item.Id)'}" data-uk-tooltip title="Delete"></button>
+                                    </span>
+                                </h4>
+                            </figcaption>
+                        </figure>
+                    </li>
+                }
+            </ul>
+        }
+        
+    </div>
+</div>
+<div id="create-grade" class="uk-modal">
+    @using (Html.BeginForm("CreateGroup", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend>Create Group</legend>
+                    <div class="uk-form-row">
+                        @Html.LabelFor(u => u.CreateGrade.Grade, new { @for = "group", @class = "uk-form-label uk-text-right" })
+                        <div class="uk-form-controls">
+                            @Html.TextBoxFor(u => u.CreateGrade.Grade, new { @placeholder = "group name", @id = "group", @required="required" })
+                            @Html.ValidationMessageFor(u => u.CreateGrade.Grade, null, new { @class = "uk-form-danger" })
+                        </div>
+                    </div>
+                </fieldset>
+                <br />
+                <div class="uk-form-row">
+                    <button class="uk-width-1-5 uk-align-right uk-button uk-button-success" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+@foreach (var item in Model.Grades)
+{
+    <div id="@Html.Raw("update-"+item.Id)" class="uk-modal">
+        @using (Html.BeginForm("UpdateGroup", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <form class="uk-form uk-form-horizontal">
+                    <fieldset data-uk-margin>
+                        <legend>Update Group Information</legend>
+                        @Html.HiddenFor(g => g.UpdateGroup.GroupId, new { @Value = item.Id })
+                        <div class="uk-form-row">
+                            @Html.LabelFor(u => u.UpdateGroup.GroupName, new { @for = "group", @class = "uk-form-label uk-text-right" })
+                            <div class="uk-form-controls">
+                                @Html.TextBoxFor(u => u.UpdateGroup.GroupName, new { @placeholder = "group name", @id = "group", @required = "required", @Value = item.Grade })
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="uk-form-row uk-margin-top">
+                        <button class="uk-width-1-5 uk-align-right uk-button uk-button-primary" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+
+    <div id="@Html.Raw("delete-"+item.Id)" class="uk-modal">
+        @using (Html.BeginForm("DeleteGroup", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <form class="uk-form uk-form-horizontal">
+                    <fieldset data-uk-margin>
+                        <legend>Delete Confirmation</legend>
+                        @Html.HiddenFor(d => d.DeleteGrade.GroupId, new { @Value = item.Id })
+                        <div class="uk-form-row">
+                            Are you sure to remove @Html.DisplayFor(modelItem => item.Grade, new { @class = "uk-text-bold" }) from the list?
+                            <div class="uk-form-controls">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="uk-form-row uk-margin-top">
+                        <button class="uk-width-1-5 uk-align-right uk-button uk-button-primary" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,75 @@
+﻿@model library_prototype.Models.MultipleModel.BorrowTabVM
+<script>
+    function BRMessage(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:BRMessage(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+</script>
+<script>
+    function GiveBookShowModal() {
+        jQuery.UIkit.modal('#give-book-modal').show();
+    }
+</script>
+<div>
+    <h3 class="uk-text-bold">Borrow Book</h3>
+    <nav class="uk-navbar">
+        <div class="uk-navbar-content">
+            <div class="uk-button-group">
+                <a class="uk-button uk-button-primary" data-uk-modal="{target:'#quick-give'}">
+                    Quick Borrow
+                </a>
+            </div>
+        </div>
+        <div class="uk-navbar-content uk-navbar-flip">
+            @using (Ajax.BeginForm("SearchReservation", "", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "br-loading", UpdateTargetId = "borrow-return" }, new { @class = "uk-form uk-margin-remove uk-display-inline-block" }))
+            {
+                <input type="text" placeholder="Search Reservation" id="search" name="term" />
+                <button type="submit" class="uk-button uk-button-primary uk-icon-search"></button>
+            }
+        </div>
+    </nav>
+    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
+        <thead>
+            <tr class="uk-text-center uk-text-bold">
+                <td>Date</td>
+                <td>Book Title</td>
+                <td>Borrower's Name</td>
+                <td>Response</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Reservation.Count != 0)
+            {
+                foreach (var res in Model.Reservation)
+                {
+                    <tr>
+                        <td>@Html.Raw(res.CreatedAt.Value.AddHours(8).ToString("F"))</td>
+                        <td>@Html.DisplayFor(modelItem => res.Book.Title)</td>
+                        <td>@Html.ActionLink(Html.Raw(res.User.Student.FirstName+" "+ res.User.Student.MiddleInitial+". "+ res.User.Student.LastName).ToString(), "UserInformation", new { id = res.UserId }, new { @class = "", @data_uk_tooltip = "pos:'top'", @title="Click me to see my profile" })</td>
+                        <td>
+                            @Ajax.ActionLink("Give Book", "GiveBookModal", new { id = res.Id }, new AjaxOptions { HttpMethod = "GET", LoadingElementId = "br-loading", UpdateTargetId = "give-book-modal", OnSuccess = "GiveBookShowModal()" }, new { @class = "uk-button uk-button-primary" })
+                            @Ajax.ActionLink("Cancel", "CancelReservation", new { id = res.Id }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "br-loading", UpdateTargetId = "borrow-return", OnSuccess = "BRMessage()" }, new { @class = "uk-button uk-button-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+            else if(Model.Reservation.Count == 0)
+            {
+                <tr><td class="uk-text-warning">There is no any reservation</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="give-book-modal" class="uk-modal">
+</div>

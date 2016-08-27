@@ -1,0 +1,59 @@
+﻿@model library_prototype.Models.MultipleModel.LibraryIndexVM
+<script>
+    function Message(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            document.getElementById("createBookForm").reset();
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:Message(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+</script>
+<ul class="uk-subnav uk-subnav-pill">
+    <li class="">
+        <a class="uk-button-primary" data-uk-modal="{target:'#create-book'}"><i class="uk-icon-plus-square"></i> Create</a>
+    </li>
+</ul>
+<table class="uk-table uk-table-striped uk-table-hover uk-table-condensed">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Subject</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.DbBooks.Where(b=>b.Delete == false).ToList())
+            {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.BooksAuthors[0].Author.LastName), @Html.DisplayFor(modelItem => item.BooksAuthors[0].Author.FirstName) @Html.DisplayFor(modelItem => item.BooksAuthors[0].Author.MiddleInitial)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Subject.CallNo) -  @Html.DisplayFor(modelItem => item.Subject.Subject)
+                </th>
+                <th>
+                    @Html.ActionLink("Go", "BookInformation", new { id = item.Id }, new { @class = "uk-button uk-button-primary" })
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

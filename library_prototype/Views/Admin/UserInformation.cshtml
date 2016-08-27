@@ -1,0 +1,41 @@
+﻿@using System.Web.Optimization;
+@model library_prototype.Models.MultipleModel.UserInformationVM
+@{
+    ViewBag.Title = "UserInformation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <div class="uk-width-medium-1-1" id="user-profile">
+        @Html.Partial("_UserInformation")
+    </div>
+    <hr class="uk-grid-divider"/>
+    @*<div>
+        <h3>Book History</h3>
+    </div>
+    <hr class="uk-grid-divider" />
+    <div>
+        <h3>User Logs</h3>
+    </div>
+    <hr class="uk-grid-divider" />*@
+</div>
+<div id="delete-user" class="uk-modal">
+    @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { @class = "uk-form uk-form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <form class="uk-form uk-form-horizontal">
+                <fieldset data-uk-margin>
+                    <legend>Delete User</legend>
+                    @Html.HiddenFor(u => u.User.Id)
+                    <div class="uk-form-row">
+                        Are you sure to delete @Html.DisplayFor(u => u.User.Email) ?
+                    </div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-width-1-5 uk-align-right uk-button uk-button-primary">Yes</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    }
+</div>

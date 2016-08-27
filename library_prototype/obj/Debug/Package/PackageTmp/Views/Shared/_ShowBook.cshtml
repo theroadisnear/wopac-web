@@ -1,0 +1,173 @@
+﻿@model library_prototype.Models.MultipleModel.BooksVM
+<script>
+    UIkit.domObserve('#show-book', function (element) { /* apply on dom change within element */ });
+    function ShowComment() {
+        jQuery.UIkit.accordion('#show-comment').show();
+    }
+</script>
+<script src="~/Scripts/components/accordion.min.js"></script>
+<link href="~/Content/components/accordion.min.css" rel="stylesheet" />
+<div id="show-book" class="uk-modal" data-uk-check-display>
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <a class="uk-modal-close uk-close"></a>
+        @if (Model.Book != null)
+        {
+            <div class="uk-modal-header">
+                <h2 class="uk-text-bold">@Html.DisplayFor(b => b.Book.Title)</h2>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-medium-1-3 uk-text-center">
+                    @if (Model.Book.Subject.CallNo >= 0 && Model.Book.Subject.CallNo <= 99)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-000.png")" class="uk-thumbnail" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 100 && Model.Book.Subject.CallNo <= 199)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-100.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 200 && Model.Book.Subject.CallNo <= 299)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-200.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 300 && Model.Book.Subject.CallNo <= 399)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-300.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 400 && Model.Book.Subject.CallNo <= 499)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-400.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 500 && Model.Book.Subject.CallNo <= 599)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-500.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 600 && Model.Book.Subject.CallNo <= 699)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-600.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 700 && Model.Book.Subject.CallNo <= 799)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-700.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 800 && Model.Book.Subject.CallNo <= 899)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-800.png")" />
+                    }
+                    else if (Model.Book.Subject.CallNo >= 900 && Model.Book.Subject.CallNo <= 999)
+                    {
+                    <img src="@Url.Content("~/Image/default/subject/Class-900.png")" />
+                    }
+                </div>
+                <div class="uk-width-medium-2-3">
+                    <div class="uk-grid" data-uk-grid-match>
+                        <div class="uk-width-medium-1-3 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-6">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-users"></i>
+                                </div>
+                                <div class="uk-width-medium-5-6">
+                                    <h3 class="uk-text-bold">Author</h3>
+                                    @foreach (var author in Model.Book.BooksAuthors.ToList())
+                                    {
+                                        <p class="uk-margin-remove">
+                                            @Html.DisplayFor(modelItem => author.Author.LastName), @Html.DisplayFor(modelItem => author.Author.FirstName) @Html.DisplayFor(modelItem => author.Author.MiddleInitial).
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-6">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-book"></i>
+                                </div>
+                                <div class="uk-width-medium-5-6">
+                                    <h3 class="uk-text-bold">Subject</h3>
+                                    <p class="uk-margin-top-remove">
+                                        @Html.DisplayFor(b => b.Book.Subject.CallNo) - @Html.DisplayFor(b => b.Book.Subject.Subject)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-6">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-building"></i>
+                                </div>
+                                <div class="uk-width-medium-5-6">
+                                    <h3 class="uk-text-bold">Publisher</h3>
+                                    <p class="uk-margin-top-remove">
+                                        @Html.DisplayFor(b => b.Book.Publisher.PublisherName)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-6">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-info"></i>
+                                </div>
+                                <div class="uk-width-medium-5-6">
+                                    <h3 class="uk-text-bold">Other Information</h3>
+                                    <p class="uk-margin-remove">Copyright: @Html.Raw(Model.Book.Copyright.Year)</p>
+                                    <p class="uk-margin-remove">Volume: @Html.DisplayFor(b => b.Book.Volume)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-6">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-star"></i>
+                                </div>
+                                <div class="uk-width-medium-5-6" id="rating-section">
+                                    @Html.Partial("_RateBook")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-8-10 uk-margin-bottom">
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-10 uk-text-center">
+                                    <i class="uk-icon-large uk-text-primary uk-icon-language"></i>
+                                </div>
+                                <div class="uk-width-medium-9-10">
+                                    <h3 class="uk-text-bold">Description</h3>
+                                    <p class="uk-margin-remove">
+                                        @Html.Raw(Model.Book.Synopsis)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-2 uk-text-left">
+                    @Ajax.ActionLink("View Comment", "ViewBookComment", new { id = Model.Book.Id }, new AjaxOptions { LoadingElementId = "comment-loading", UpdateTargetId = "comment-section" }, new { @class="uk-button uk-button-primary"})
+                    @if (User.Identity.IsAuthenticated && Model.Book.Borrow == true)
+                    {
+                        @Ajax.ActionLink("Make a reservation", "ReserveBook", "User", new { id = Model.Book.Id.ToString() }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "comment-loading", UpdateTargetId = "rating-section", OnSuccess = "RateMessage()" }, new { @class = "uk-button uk-button-primary uk-margin-small-left" })
+                        @Ajax.ActionLink("Recommend", "RecommendBookForm", "User", new { id = Model.Book.Id }, new AjaxOptions { LoadingElementId = "comment-loading", UpdateTargetId = "comment-section" }, new { @class = "uk-button uk-button-primary uk-margin-small-left" })
+                    }
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="uk-width-1-2 uk-text-right">
+                        <h4>
+                            Rate Me:
+                            <span>
+                                @Ajax.ActionLink(" ", "RateBook", "User", new { id = Model.Book.Id.ToString(), rate = 1 }, new AjaxOptions { HttpMethod="POST", LoadingElementId = "comment-loading", UpdateTargetId = "rating-section", OnSuccess = "RateMessage()" }, new { @class = "uk-icon-star", @data_uk_tooltip = "pos:'top'", @title = "1 point" })
+                                @Ajax.ActionLink(" ", "RateBook", "User", new { id = Model.Book.Id.ToString(), rate = 2 }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "comment-loading", UpdateTargetId = "rating-section", OnSuccess = "RateMessage()" }, new { @class = "uk-icon-star", @data_uk_tooltip = "pos:'top'", @title = "2 points" })
+                                @Ajax.ActionLink(" ", "RateBook", "User", new { id = Model.Book.Id.ToString(), rate = 3 }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "comment-loading", UpdateTargetId = "rating-section", OnSuccess = "RateMessage()" }, new { @class = "uk-icon-star", @data_uk_tooltip = "pos:'top'", @title = "3 points" })
+                            </span>
+                        </h4>
+                    </div>
+                }
+                <div class="uk-width-1-1 uk-text-center"><i class="uk-icon-spin uk-icon-spinner uk-icon-large" style="display:none" id="comment-loading"></i></div>
+                <div id="comment-section" class="uk-width-1-1 uk-margin-top">
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+    

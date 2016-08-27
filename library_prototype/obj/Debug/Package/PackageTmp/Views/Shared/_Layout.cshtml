@@ -1,0 +1,138 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr" class="uk-notouch">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    @Scripts.Render("~/Scripts/jquery-2.1.4.js")
+    @Scripts.Render("~/Scripts/angular.min.js")
+    @Scripts.Render("~/Scripts/uikit.min.js")
+    @Scripts.Render("~/Scripts/components/sticky.min.js")
+    @Scripts.Render("~/Scripts/components/notify.js")
+    @Scripts.Render("~/Scripts/components/tooltip.js")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/components/autocomplete.min.js"></script>
+
+    @Styles.Render("~/Content/uikit.almost-flat.min.css")
+    @Styles.Render("~/Content/components/notify.almost-flat.min.css")
+    @Styles.Render("~/Content/components/sticky.almost-flat.min.css")
+    @Styles.Render("~/Content/components/slidenav.almost-flat.min.css")
+    @Styles.Render("~/Content/components/tooltip.min.css")
+    <link href="~/Content/components/autocomplete.almost-flat.min.css" rel="stylesheet" />
+</head>
+<body>
+<nav class="uk-navbar uk-sticky-placeholder"data-uk-sticky="{top:0, media: 0}">
+    <div class="uk-sticky-init uk-active">
+        @*<a href="" class="uk-navbar-brand uk-hidden-small">Brand</a>*@
+        <ul class="uk-navbar-nav uk-margin-left uk-hidden-small">
+            @*<li class="uk-parent" data-uk-dropdown>
+                <a>Navbar</a>
+                <div class="uk-dropdown uk-dropdown-navbar">
+                    <ul class="uk-nav uk-nav-navbar">
+                        <li><a>Sample 1</a></li>
+                        <li><a>Sample 2</a></li>
+                        <li class="uk-nav-divider"></li>
+                    </ul>
+                </div>
+            </li>*@
+            
+        </ul>
+        <div class="uk-navbar-flip">
+            <ul class="uk-navbar-nav">
+                <li>
+                    @Html.ActionLink("Books", "Books", "User")
+                </li>
+                @*<li class="uk-parent" data-uk-dropdown="{mode:'click'}">
+                    <a class="" id=""><i class="uk-icon-globe uk-icon-small uk-margin-small-top"></i><i id="notification-badge"></i></a>
+                    <div class="uk-dropdown uk-dropdown-navbar" id="book-notification">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>Sample</li>
+                        </ul>
+                    </div>
+                </li>*@
+                <li class="uk-parent" data-uk-dropdown>
+                    @if (Request.IsAuthenticated && User.Identity.Name != "acc_act")
+                    {
+                        <a class="">@Html.Encode(User.Identity.Name) <i><img src="@Url.Content("~/Image/placeholder_avatar.png")" class="uk-border-circle" /></i></a>
+                        <div class="uk-dropdown uk-dropdown-navbar">
+                            <ul class="uk-nav uk-nav-navbar">
+                                <li>@Html.ActionLink("Profile", "UserProfile", "User")</li>
+                                @if (User.IsInRole("administrator"))
+                                {
+                                    <li>@Html.ActionLink("Admin Panel", "BorrowAndReturn", "Admin")</li>
+                                }
+                                <li class="uk-nav-divider"></li>
+                                <li>@Html.ActionLink("Log out", "Logout", "Auth")</li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Log in", "Login", "Auth")
+                    }
+                </li>
+            </ul>
+            @if (Request.IsAuthenticated)
+            {
+                <a href="#offcanvas-user" class="uk-icon-user uk-icon-large uk-visible-small uk-margin-small uk-margin-right" data-uk-offcanvas></a>
+            }
+            else
+            {
+                @Html.ActionLink("Log in", "Login", "Auth", new { @class = "uk-visible-small" })
+            }
+        </div>
+        <a href="#offcanvas-menu" class="uk-navbar-toggle uk-icon-large uk-margin-small uk-visible-small" data-uk-offcanvas></a>
+        <a href="" class="uk-navbar-brand uk-margin-left uk-visible-small">Brand</a>    
+    </div>
+</nav>
+    @*<input type="button" id="sendmessage" value="Send" />*@
+    <ul id="discussion"></ul>
+@RenderBody()
+<div id="offcanvas-menu" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav uk-nav-offcanvas">
+            <li><a>Sample 1</a></li>
+            <li><a>Sample 2</a></li>
+            <li class="uk-nav-divider"></li>
+        </ul>
+    </div>
+</div>
+<div id="offcanvas-user" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav uk-nav-offcanvas">
+            <li>@Html.ActionLink("Profile", "UserProfile", "User")</li>
+            <li><a>Settings</a></li>
+            <li class="uk-nav-divider"></li>
+            <li>@Html.ActionLink("Log out", "Logout", "Auth")</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.bookNotification;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function (name, message) {
+                // Add the message to the page.
+                UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+                $('#notification-badge').html('<i class="uk-badge uk-badge-notification">' + htmlEncode(message) + '</i>');
+            };
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.hello();
+                });
+            });
+        });
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+</script>

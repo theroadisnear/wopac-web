@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "SMTPIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <h2 class="uk-text-bold">
+        Mail Management
+        <i class="uk-icon-spin uk-icon-spinner uk-icon-medium" style="display:none" id="smtp-loading"></i>
+    </h2>
+    <ul class="uk-tab" data-uk-tab>
+        <li class="uk-active">@Ajax.ActionLink("Dashboard", "SMTPDashboard", "Admin", new AjaxOptions { LoadingElementId = "smtp-loading", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "smtp-content" })</li>
+        <li>@Ajax.ActionLink("Messages", "SMTPMessages", "Admin", new AjaxOptions { LoadingElementId = "smtp-loading", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "smtp-content" })</li>
+        <li>@Ajax.ActionLink("Credentials", "SMTPCredentials", "Admin", new AjaxOptions { LoadingElementId = "smtp-loading", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "smtp-content" })</li> 
+    </ul>
+    <div id="smtp-content" class="uk-margin-small-top">
+        @Html.Partial("_SMTPDashboard")
+    </div>
+</div>

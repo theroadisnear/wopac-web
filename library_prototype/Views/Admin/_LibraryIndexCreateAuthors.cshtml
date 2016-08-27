@@ -1,0 +1,23 @@
+﻿@model library_prototype.Models.AddAuthor
+@using HtmlHelpers.BeginCollectionItem
+
+@using (Html.BeginCollectionItem("AddAuthors"))
+{
+    <script>
+        $("a.delete-row").click("click", function () {
+            $(this).parents("div.edit-row:first").remove();
+            return false;
+        });
+    </script>
+    <div class="uk-form-row edit-row">
+        <div class="uk-autocomplete uk-form" id="autocompleteAuthor">
+            <span class="uk-text-bold">Last Name:* </span>
+            @Html.TextBoxFor(c => c.LastName, new { @placeholder = "last name", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "authorLastName", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Last Name" })
+        </div>
+        <span class="uk-text-bold uk-margin-small-left">First Name:* </span>
+        @Html.TextBoxFor(c => c.FirstName, new { @placeholder = "first name", @class = "uk-margin-small-left uk-margin-small-bottom", @id = "authorFirstName", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "First Name" })
+        <span class="uk-text-bold uk-margin-small-left">Middle Initial:* </span>
+        @Html.TextBoxFor(c => c.MiddleInitial, new { @placeholder = "middle initial", @class = "uk-margin-small-left uk-margin-small-bottom uk-form-width-mini", @id = "authorMiddleInitial", @required = "required", @data_uk_tooltip = "pos:'top'", @title = "Middle Initial" })
+        <a id="#" class="delete-row uk-icon-minus uk-text-danger" data-uk-tooltip="pos:'top'" title="Remove Author"></a>
+    </div>
+}

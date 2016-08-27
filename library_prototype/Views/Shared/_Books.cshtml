@@ -1,0 +1,86 @@
+﻿@model List<library_prototype.DAL.LibraryDbContext.BookModel>
+<script>
+    UIkit.domObserve('#booksList', function (element) { /* apply on dom change within element */ });
+    UIkit.domObserve('#comment-section', function (element) { /* apply on dom change within element */ });
+    function ShowModal()
+    {
+        jQuery.UIkit.modal('#show-book').show();
+        console.log("modal");
+    }
+</script>
+<div class="uk-article" data-uk-check-display>
+    <h1 class="uk-article-title">
+        Books
+    </h1>
+    <div class="uk-grid uk-grid-medium uk-container-center" data-uk-grid-match data-uk-grid-margin>
+        @foreach(var book in Model)
+        {
+            <div class="uk-width-medium-4-10 uk-panel uk-panel-box uk-margin-left uk-panel-hover" data-uk-scrollspy="{cls:'uk-animation-fade',repeat:true, delay:'300'}">
+                <h2 class="uk-panel-title uk-text-bold">
+                    <i class="uk-icon-spinner uk-icon-spin" style="display:none" id="@Html.Raw(book.Id+"loading")"></i> @Ajax.ActionLink(book.Title, "ShowBook", new { id = book.Id}, new AjaxOptions { UpdateTargetId = "modalBook", LoadingElementId=(book.Id+"loading"), InsertionMode=InsertionMode.Replace, OnSuccess="ShowModal()" })
+                </h2>
+                <div class="uk-grid">
+                    <div class="uk-width-medium-5-10">
+                        @if (book.Subject.CallNo >= 0 && book.Subject.CallNo <= 99)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-000.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 100 && book.Subject.CallNo <= 199)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-100.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 200 && book.Subject.CallNo <= 299)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-200.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 300 && book.Subject.CallNo <= 399)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-300.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 400 && book.Subject.CallNo <= 499)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-400.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 500 && book.Subject.CallNo <= 599)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-500.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 600 && book.Subject.CallNo <= 699)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-600.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 700 && book.Subject.CallNo <= 799)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-700.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 800 && book.Subject.CallNo <= 899)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-800.png")" />
+                        }
+                        else if (book.Subject.CallNo >= 900 && book.Subject.CallNo <= 999)
+                        {
+                            <img src="@Url.Content("~/Image/default/subject/Class-900.png")" />
+                        }
+                    </div>
+                    <div class="uk-width-medium-5-10">
+                        <h4 class="uk-margin-bottom-remove uk-text-center uk-text-bold">Authors</h4>
+                        <ul class="uk-list uk-margin-top-remove">
+                            @foreach(var author in book.BooksAuthors.Where(b=>b.Deleted == false).Take(3).ToList())
+                            {
+                                <li>
+                                    @Html.DisplayFor(modelItem => author.Author.LastName), @Html.DisplayFor(modelItem => author.Author.FirstName) @Html.DisplayFor(modelItem => author.Author.MiddleInitial).
+                                </li>
+                            }
+                        </ul>
+                        <h4 class="uk-margin-bottom-remove uk-text-center uk-text-bold">Subject</h4>
+                        <ul class="uk-list uk-margin-top-remove">
+                            <li>
+                                @Html.DisplayFor(modelIem => book.Subject.Subject)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

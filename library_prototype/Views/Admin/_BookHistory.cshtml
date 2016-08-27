@@ -1,0 +1,39 @@
+﻿@model library_prototype.Models.MultipleModel.BookInformationVM
+
+<div>
+    @if(Model.Book.BookLogs.Count > 0)
+    {
+        <table class="uk-table uk-table-hover uk-table-striped">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Date Borrowed</th>
+                    <th>Date Returned</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var log in Model.Book.BookLogs.OrderByDescending(b=>b.CreatedAt))
+                {
+                    <tr>
+                        <td>
+                            @Html.Raw(log.User.Student.FirstName+" "+log.User.Student.MiddleInitial+". "+log.User.Student.LastName)
+                        </td>
+                        <td>
+                            @Html.Raw(log.CreatedAt.Value.AddHours(8).ToString("f"))
+                        </td>
+                        <td>
+                            @if (log.Return == true)
+                            {
+                                @Html.Raw(log.UpdatedAt.Value.AddHours(8).ToString("f"))
+                            }
+                        </td>
+                        <td>
+                            @Html.Raw(log.MessageLog)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

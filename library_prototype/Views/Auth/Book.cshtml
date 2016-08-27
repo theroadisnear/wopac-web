@@ -1,0 +1,136 @@
+﻿@using System.Web.Optimization;
+@{
+    ViewBag.Title = "Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Scripts/components/accordion.min.js")
+
+<div class="uk-grid " data-uk-grid-margin>
+    <div class="uk-width-medium-1-5 ">
+        <div class="uk-sticky-placeholder uk-margin">
+            <div class="uk-panel uk-panel-box uk-sticky-init uk-active" data-uk-sticky="{top:15, media: 780}">
+                <form class="uk-search" data-uk-search>
+                    <input class="uk-search-field" type="search" placeholder="search..." />
+                </form>
+                <div class="uk-nav-divider"></div>
+                <ul class="uk-nav uk-nav-side">
+                    <li>
+                        <a href="#">History</a>
+                    </li>
+                    <li>
+                        <a href="#">Fiction</a>
+                    </li>
+                    <li>
+                        <a href="#">Art</a>
+                    </li>
+                    <li>
+                        <a href="#">Science</a>
+                    </li>
+                    <li>
+                        <a href="#">Reference</a>
+                    </li>
+                    <li>
+                        <a href="#">Sport</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="uk-width-medium-4-5 uk-margin-top">
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid tm-grid-truncate" data-uk-grid-margin>
+                <div class="uk-width-2-3 uk-accordion" data-uk-accordion="{collapse: false, showfirst: false}">
+                    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-panel-box-primary-hover">
+                        <div class="uk-panel-badge uk-badge uk-badge-success">Available</div>
+                        <h3 class="uk-panel-title">Systems Analysis and Design</h3>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">More Information</a>
+                        <div class="uk-accordion-content">
+                            <div class="uk-grid">
+                                <div class=" uk-width-1-2">
+                                    Author:    Kendall, Kan K. <br />
+                                    Publisher: Yak's Bend Publisher Inc.<br />
+                                    Subject:   Software Engineering
+                                </div>
+                                <div class="uk-width-1-2">
+                                    <a class="uk-icon-star-o uk-align-right"></a>
+                                    <a class="uk-icon-star-o uk-align-right"></a>
+                                    <a class="uk-icon-star-o uk-align-right"></a>
+                                    <a class="uk-icon-star-o uk-align-right"></a>
+                                    <a class="uk-icon-star-o uk-align-right"></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="uk-nav-divider"></div>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">View Comment</a>
+                        <div class="uk-accordion-content">
+                            <article class="uk-comment">
+                                <header class="uk-comment-header">
+                                    <img class="uk-comment-avatar" src="~/Image/placeholder_avatar.svg" alt="">
+                                    <h4 class="uk-comment-title">Josephine Maglalang</h4>
+                                    <div class="uk-comment-meta">13 days ago | Profile</div>
+                                </header>
+                                <div class="uk-comment-body">
+                                    <p>
+                                        Recommended by Sir Ladao.
+                                    </p>
+                                </div>
+                            </article>
+                            <a class="uk-h6 uk-align-right">Comment</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-2-3 uk-accordion" data-uk-accordion="{collapse: false, showfirst: false}">
+                    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-panel-box-primary-hover">
+                        <div class="uk-panel-badge uk-badge uk-badge-success">Available</div>
+                        <h3 class="uk-panel-title">Discrete Mathematics for Kids</h3>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">More Information</a>
+                        <div class="uk-accordion-content">
+                            Author:    Cruz, Joseph H. <br />
+                            Publisher: Jade Quarry Publisher Inc.<br />
+                            Subject:   Discrete Mathematics
+
+                        </div>
+                        <div class="uk-nav-divider"></div>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">View Comment</a>
+                        <div class="uk-accordion-content">
+                            <article class="uk-comment">
+                                <header class="uk-comment-header">
+                                    <img class="uk-comment-avatar" src="~/Image/placeholder_avatar.svg" alt="">
+                                    <h4 class="uk-comment-title">Mark Gaspang</h4>
+                                    <div class="uk-comment-meta">2 weeks ago | Profile</div>
+                                </header>
+                                <div class="uk-comment-body">
+                                    <p>
+                                        Nice book!!
+                                    </p>
+                                </div>
+                            </article>
+                            <a class="uk-h6 uk-align-right">Comment</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-2-3 uk-accordion" data-uk-accordion="{collapse: false, showfirst: false}">
+                    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-panel-box-primary-hover">
+                        <div class="uk-panel-badge uk-badge uk-badge-danger">Available</div>
+                        <h3 class="uk-panel-title">Quas Wex Exort Guide Book</h3>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">More Information</a>
+                        <div class="uk-accordion-content">
+                            Author:    Kapala, Eci D. <br />
+                            Publisher: Valve Publisher Inc.<br />
+                            Subject:   Dota 2
+
+                        </div>
+                        <div class="uk-nav-divider"></div>
+                        <a class="uk-accordion-title uk-h6 uk-align-center">View Comment</a>
+                        <div class="uk-accordion-content">
+                            <p>No comment</p>
+                            <a class="uk-h6 uk-align-right">Comment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

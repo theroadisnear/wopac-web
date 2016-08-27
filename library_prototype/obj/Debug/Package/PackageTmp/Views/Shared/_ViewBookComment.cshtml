@@ -1,0 +1,69 @@
+﻿@model library_prototype.Models.MultipleModel.CommentsVM
+@{ 
+    var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+    var getUserId = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault();
+}
+<script>
+    function Message(error, message) {
+        if (error == false) {
+            UIkit.notify(message, { status: 'success', timeout: 5000, pos: 'bottom-right' });
+            document.getElementById("commentForm").reset();
+            document.getElementsByName('NewComment.Comment').val("");
+        }
+        else if (error == true) {
+            UIkit.notify(message, { status: 'warning', timeout: 0, pos: 'bottom-right' });
+        }
+    }
+    @if (Model.Error != null)
+    {
+        foreach (var error in Model.Message)
+        {
+            @:Message(@Model.Error.ToString().ToLower(), @Html.Raw("'"+ error+"'"));
+        }
+    }
+</script>
+@if (Model.Book.Comments != null)
+{
+    <div class="uk-overflow-container">
+        @foreach (var comment in Model.Book.Comments.Where(c=>c.Delete == false).OrderBy(c=>c.CreatedAt))
+        {
+            <div class="">
+                <article class="uk-comment">
+                    <header class="uk-comment-header">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-1-1">
+                                <img class="uk-comment-avatar" src="@Url.Content("~/Image/default/profile_picture.png")" width="50" height="50" alt="">
+                                <h4 class="uk-comment-title uk-text-top uk-text-left">
+                                    @Html.DisplayFor(modelItem => comment.User.Student.FirstName) @Html.DisplayFor(modelItem => comment.User.Student.LastName) @Html.DisplayFor(modelItem => comment.User.Student.MiddleInitial).
+                                    <span class="uk-comment-meta">@Html.Raw(comment.CreatedAt.Value.AddHours(8).ToString("f"))</span>
+                                </h4>
+                                <p class="uk-comment-body uk-margin-top-remove">
+                                    @Html.DisplayFor(modelItem => comment.Comment)
+                                </p>
+                            </div>
+                        </div>
+                    </header>
+                </article>
+            </div>
+        }
+    </div>
+}
+else if(Model.Book.Comments == null)
+{
+    <p class="uk-text-center">There is no existing comment</p>
+}
+<div class="uk-width-1-1 uk-text-center">
+    <i class="uk-icon-spin uk-icon-spinner uk-icon-large" id="add-comment-loading" style="display:none"></i>
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        using (Ajax.BeginForm("AddNewComment", "", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "comment-section", LoadingElementId = "add-comment-loading", OnSuccess = "Message()" }, new { @class = "uk-form uk-form-horizontal", @id="commentForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(c => c.NewComment.BookId, new { @Value = Model.Book.Id })
+            @Html.HiddenFor(c => c.NewComment.UserId, new { @Value = getUserId })
+            @Html.TextBoxFor(c => c.NewComment.Comment, new { @placeholder = "Add a comment", @class="uk-width-1-1", @required="required"})
+        }
+    }
+</div>
